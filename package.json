@@ -1,0 +1,42 @@
+{
+  "name": "blog-o-holic",
+  "version": "0.0.1",
+  "description": "Lohika Task. Blog",
+  "main": "server.js",
+  "scripts": {},
+  "author": "kanasugara",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.5.2",
+    "body-parser": "^1.15.0",
+    "express": "^3.2.6",
+    "html": "0.0.10",
+    "mongodb": "^2.1.14",
+    "mongoose": "^4.4.11",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-router": "^2.5.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.1",
+    "image-webpack-loader": "^2.0.0",
+    "morgan": "^1.7.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.5",
+    "webpack": "^1.13.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanasugara/blog-o-holic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kanasugara/blog-o-holic/issues"
+  },
+  "homepage": "https://github.com/kanasugara/blog-o-holic#readme"
+}

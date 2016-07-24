@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'logo';
+    src: url('../fonts/Thin king.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'logo2';
+    src: url('../fonts/Cottons Light DEMO.otf');
+}
+@font-face {
+    font-family: 'logo3';
+    src: url('../fonts/Tibet.ttf');
+}
+@font-face {
+    font-family: 'logo4';
+    src: url('../fonts/Coffee At Midnight Demo.ttf');
+}
