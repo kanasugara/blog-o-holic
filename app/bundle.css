@@ -58,8 +58,6 @@ header ul li a:hover{
 #mainContainer{
     width: 80%;
     margin: 0 auto;
-    background-color: rgba(111, 111, 111, 0.35);
-    overflow: hidden;
 }
 #newPostContainer{
     width: 80%;
@@ -68,9 +66,11 @@ header ul li a:hover{
 .postWrapper{
     height: 350px;
     border-bottom:2px solid black;
+    background-size: 100% auto;
     background-image: url(7a74621b00808e3edb927c883e1c89ac.jpg);
     position: relative;
     transition: 450ms;
+    margin-top: 35px;
 }
 .postWrapper:hover > .postHover {
     background-color: rgba(111, 111, 111, 0.35);
@@ -93,7 +93,6 @@ header ul li a:hover{
 .postTitle{
     background-color: rgba(255, 255, 255, 0.50);
     height: 50px;
-    border-bottom:1px solid white;
     line-height: 50px;
     position: relative;
 }

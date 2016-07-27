@@ -15,12 +15,16 @@ export function listPosts(id) {
 export function createPost(data) {
     const post = new Post({
         title: data.title,
-        text: data.text,
-        color: data.color,
+        mainBg: data.mainBg,
+        mainTxt: data.mainTxt,
+        optSection: optionalSections,
         createdAt: new Date()
     });
 
+    optArray = [];
+
     return post.save();
+
 }
 
 export function deleteNote(id) {

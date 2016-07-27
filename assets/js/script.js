@@ -9,7 +9,6 @@ import Header from "./pages/Header";
 import MainContainer from "./pages/mainContainer";
 
 class Layout extends React.Component {
-        
        render() {
            return( 
                <div>
