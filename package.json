@@ -3,13 +3,16 @@
   "version": "0.0.1",
   "description": "Lohika Task. Blog",
   "main": "server.js",
-  "scripts": {},
+  "scripts": {
+    "start": "babel-node server.js"}
+    ,
   "author": "kanasugara",
   "license": "ISC",
   "dependencies": {
     "babel": "^6.5.2",
     "body-parser": "^1.15.0",
     "express": "^3.2.6",
+    "cors": "*",
     "html": "0.0.10",
     "mongodb": "^2.1.14",
     "mongoose": "^4.4.11",

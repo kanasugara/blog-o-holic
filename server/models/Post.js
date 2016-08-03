@@ -2,12 +2,6 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const	optSectSchema new Schema({
-	class	: { type: String, required: true},
-	bg		: { type: String, required: true},
-	txt 	: { type: String, required: true }
-});
-
 const PostSchema = new Schema({
 	title		: { type: String, required: true },
 	mainBg		: { type: String, required: true},
@@ -16,7 +10,5 @@ const PostSchema = new Schema({
 	createdAt	: { type: Date }
 });
 
-const Section = mongoose.model('Section', optSectSchema);
-const Post = mongoose.model('Post', PostSchema);
 
-////save optional schema array to temp var then push all in main schema  and .map array in the page
+const Post = mongoose.model('Post', PostSchema);

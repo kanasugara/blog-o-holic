@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
-
+import config from '../config.json';
 import '../models/Post';
 
 const Post = mongoose.model('Post');
 
 export function setUpConnection() {
-    mongoose.connect(`mongodb://localhost/notes`);
+    mongoose.connect(`mongodb://${config.db.host}:${config.db.port}/${config.db.name}`);
 }
 
 export function listPosts(id) {
@@ -17,16 +17,12 @@ export function createPost(data) {
         title: data.title,
         mainBg: data.mainBg,
         mainTxt: data.mainTxt,
-        optSection: optionalSections,
+        // optSection: optionalSections,
         createdAt: new Date()
     });
-
-    optArray = [];
-
     return post.save();
-
 }
 
-export function deleteNote(id) {
+export function deletePost(id) {
     return Post.findById(id).remove();
 }

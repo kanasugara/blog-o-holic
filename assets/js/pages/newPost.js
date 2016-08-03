@@ -1,32 +1,16 @@
-import React from "react";
+ort React from "react";
 
-export default class newPostPage extends React.Component{
-     let optArray = [];
-     addOptSect(data){
-		optArray.push({
-		    	class	: data.class,
-		        bg		: data.bg,
-		        txt		: data.txt
-        });
-     }
-
-     render() {
-        return (
-            <div className = "newPostPageWrapper" >
-                <div id="preview"></div>  ////put prewiew before saving
-                <form>
-                    <p>Title</p><p id="colorPicker"> </p>
-                    <ColorPicker />
-                    <input type="text" name="title"><br>
-                    Background Picture:<br>
-                    <input type="text" name="title"><br>
-                    <textarea name="mainTxt"></textarea>
-                    <input type="submit" value="add Block">
-                    
-                    <input type="submit" value="Preview">
-                    <input type="submit" value="Save Post">
-                </form>  
-            </div>
+export default class Header extends React.Component{
+    render() {
+        return ( 
+            <header>
+                <ul>
+                    <li><a href="#" id="logo" onClick={this.showPosts} >blog-o-holic</a></li>
+                    <li><a href="#" id="HomeLink" onClick={this.showPosts} >Home</a></li>
+                    <li><a href="#" id="newPostLink" onClick={this.openCreatePost} >New Post</a></li>
+                    <li><a href="#" id="ProfileLink" onClick={this.showProfile} >Profile</a></li>
+                </ul>
+            </header>
         );
     }
 }
