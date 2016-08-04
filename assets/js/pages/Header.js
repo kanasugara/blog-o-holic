@@ -1,14 +1,15 @@
 import React from "react";
+import { Link } from 'react-router'
 
 export default class Header extends React.Component{
     render() {
         return ( 
             <header>
                 <ul>
-                    <li><a href="#" id="logo" onClick={this.showPosts} >blog-o-holic</a></li>
-                    <li><a href="#" id="HomeLink" onClick={this.showPosts} >Home</a></li>
-                    <li><a href="#" id="newPostLink" onClick={this.openCreatePost} >New Post</a></li>
-                    <li><a href="#" id="ProfileLink" onClick={this.showProfile} >Profile</a></li>
+                    <Link to='home'><li id="logo" >blog-o-holic</li> </Link>
+                    <Link to='home'><li id="HomeLink" >Home</li></Link>
+                    <Link to='newPost'><li id="newPostLink" >New Post</li></Link>
+                    <Link to='home'><li id="ProfileLink" >Profile</li></Link>
                 </ul>
             </header>
         );

@@ -1,6 +1,6 @@
 import React from "react";
 
-import Post from "./postElement";
+import Post from "./PostMin";
 
 var POSTS = [
     {
