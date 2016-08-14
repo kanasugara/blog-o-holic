@@ -1,0 +1,92 @@
+.postWrapper{
+    height: 350px;
+    border-bottom:2px solid black;
+    background-size: 100% auto;
+    /*background-image: url("../img/01.jpg");*/
+    position: relative;
+    transition: 450ms;
+    margin-top: 35px;
+}
+.postWrapper:hover > .postHover {
+    background-color: rgba(111, 111, 111, 0.35);
+    bottom: 0;
+    transition: 450ms;
+}
+.postWrapper:hover button{
+    opacity: 1;
+}
+.postHover{
+    position: absolute;
+    bottom: -300px;
+    width: 100%;
+    height: 350px;
+    transition: 450ms;
+}
+.postWrapper:last-child{
+    border:none;
+}
+.postTitle{
+    background-color: rgba(255, 255, 255, 0.50);
+    height: 50px;
+    line-height: 50px;
+    position: relative;
+}
+.postTitleText{
+    width: 90%;
+    position: absolute;
+    text-indent: 25px;
+    font-family: logo2;
+    font-size: 30px;
+}
+button{
+    height: 75%;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;    
+    margin-top: 7px;
+    opacity: 0;
+}
+.postTitle button{
+    margin-right: 5px;
+    float: right;
+}
+.postEditButton{
+    width: 50px;
+    background-color: rgba(255, 255, 255, 0);
+    border:none; 
+    font-family: sans-serif;
+    transition: 450ms;
+    
+}
+.postEditButton:hover{
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    transition: 450ms;
+}
+.postDeleteButton{
+    width: 40px;
+    background-color: rgba(255, 255, 255, 0);
+    border:none; 
+    transition: 450ms;
+}
+.postDeleteButton:hover{
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    transition: 450ms;
+    
+}
+.postContext{
+    font-size: 20px;
+    line-height: 1.55;
+    padding-top: 145px;
+    text-indent: 50px;
+    
+}
+p{
+    font-family: logo;
+    margin: 0;
+}

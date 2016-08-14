@@ -1,0 +1,43 @@
+header{
+    height: 60px;
+    background-color: rgba(189, 182, 182, 0.7);
+    border-bottom: 2px solid black;
+}
+header ul{
+    width: 80%;
+    text-align: center;
+    margin: 0;
+}
+header ul a{
+    padding-right: 40px;
+    text-decoration: none;
+    font-size: 40px;
+    line-height: 60px;
+    font-family: logo2;
+    color: black;
+    transition: 450ms;
+}
+header ul a:first-child{
+    float: left;
+}
+#logo{
+    height: 50px;
+    font-size: 35px;
+    opacity: 0.85;
+    background-color: black;
+    border-radius: 5px;
+    margin-top: 5px;
+    color: lightgrey;
+    padding: 0px 10px;
+    font-family: logo;
+    transition: 450ms;
+}
+#logo:hover{
+    color: white;
+    transition: 450ms;
+    line-height: 50px;
+}
+header ul a:hover{
+    color: white;
+    transition: 450ms;
+}

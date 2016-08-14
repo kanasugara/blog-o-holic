@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute, hashHistory} from 'react-router';
-import '../css/fonts.css'
-import '../css/styles.css'
+import './fonts.css'
+import './styles.css'
 
-import Header from './pages/Header';
-import MainContainer from './pages/mainContainer';
-import NewPostPage from './pages/NewPostPage';
-import PostPage from './pages/postPage';
+import Header from './Layout/Header';
+import MainContainer from './MainPage/mainContainer';
+import NewPostPage from './NewPostPage/NewPostPage';
+import PostPage from './SinglePostPage/postPage';
+import ProfilePage from './ProfilePage/ProfilePage';
 
 class Layout extends React.Component {
 	onPostAdd(data){
@@ -31,7 +32,7 @@ ReactDOM.render(
 			<Route path='home' component={MainContainer} />
 			<Route path='newPost' component={NewPostPage} />
 			<Route path='postPage' component={PostPage} />
-		
+			<Route path='profile' component={ProfilePage} />
 		</Route>
 	</Router>, 
 app);
