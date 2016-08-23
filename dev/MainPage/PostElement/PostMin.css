@@ -2,10 +2,11 @@
     height: 350px;
     border-bottom:2px solid black;
     background-size: 100% auto;
-    /*background-image: url("../img/01.jpg");*/
+    background-image: url("../../../public/img/01.jpg");
     position: relative;
     transition: 450ms;
     margin-top: 35px;
+    overflow: hidden;
 }
 .postWrapper:hover > .postHover {
     background-color: rgba(111, 111, 111, 0.35);

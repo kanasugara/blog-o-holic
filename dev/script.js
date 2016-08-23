@@ -19,7 +19,7 @@ class Layout extends React.Component {
 			<div>
 				<Header />
 				 {this.props.children}
-				{/* add footer here   //// comment in JadsSX style */}
+				{/* add footer here   //// comment in JSX style */}
 			</div>
 		);
 	}

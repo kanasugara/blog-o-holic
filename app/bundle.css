@@ -79,10 +79,11 @@ header ul a:hover{
     height: 350px;
     border-bottom:2px solid black;
     background-size: 100% auto;
-    /*background-image: url("../img/01.jpg");*/
+    background-image: url(7a74621b00808e3edb927c883e1c89ac.jpg);
     position: relative;
     transition: 450ms;
     margin-top: 35px;
+    overflow: hidden;
 }
 .postWrapper:hover > .postHover {
     background-color: rgba(111, 111, 111, 0.35);
@@ -329,5 +330,5 @@ section.module.parallax h1 {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 section.module.parallax-1 {
-  /*background-image: url("../img/01.jpg");*/
+  background-image: url(7a74621b00808e3edb927c883e1c89ac.jpg);
 }
