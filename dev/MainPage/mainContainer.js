@@ -1,6 +1,8 @@
 import React from "react";
 
-import Post from "./PostMin";
+import './MainContainer.css'
+
+import Post from "./PostElement/PostMin";
 
 var POSTS = [
     {

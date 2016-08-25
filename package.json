@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "Lohika Task. Blog",
   "main": "server.js",
-  "scripts": {
-    "start": "babel-node server.js"
-  },
   "author": "kanasugara",
   "license": "ISC",
   "dependencies": {

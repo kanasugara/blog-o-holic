@@ -1,7 +1,7 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {  
-  entry: './assets/js/script.js',
+  entry: './dev/script.js',
   output: {
     path: './app',
     filename: 'bundle.js'
@@ -43,7 +43,8 @@ module.exports = {
       {
           test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
           loader: "url?limit=10000&mimetype=image/svg+xml"
-      },
+      }
+      ,
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [

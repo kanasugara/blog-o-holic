@@ -1,5 +1,6 @@
 import React from "react";
 
+import './PostPageElement.css'
 export default class PostPageElement extends React.Component{
      render() {
         return (

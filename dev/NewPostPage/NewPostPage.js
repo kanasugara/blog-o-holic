@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../../css/newPostPage.css';
+import './newPostPage.css';
 
 export default class NewPostPage extends React.Component{
     constructor() {
