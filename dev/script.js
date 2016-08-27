@@ -12,7 +12,10 @@ import ProfilePage from './ProfilePage/ProfilePage';
 
 class Layout extends React.Component {
 	onPostAdd(data){
+		const url = `/home`;
 		console.log(data);
+		debugger;
+        Request.post(url).then(data);
 	}
 	render() {
 		return( 
@@ -28,7 +31,7 @@ const app = document.getElementById('app');
 ReactDOM.render(
 	<Router history={hashHistory}>
 		<Route path='/' component={Layout}>
-			<IndexRoute component={NewPostPage} />
+			<IndexRoute component={MainContainer} />
 			<Route path='home' component={MainContainer} />
 			<Route path='newPost' component={NewPostPage} />
 			<Route path='postPage' component={PostPage} />

@@ -8,7 +8,7 @@ export function setUpConnection() {
     mongoose.connect(`mongodb://${config.db.host}:${config.db.port}/${config.db.name}`);
 }
 
-export function listPosts(id) {
+export function listPosts(data) {
     return Post.find();
 }
 
