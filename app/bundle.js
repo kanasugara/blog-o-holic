@@ -100,14 +100,6 @@
 		}
 
 		_createClass(Layout, [{
-			key: 'onPostAdd',
-			value: function onPostAdd(data) {
-				var url = '/home';
-				console.log(data);
-				debugger;
-				Request.post(url).then(data);
-			}
-		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
@@ -129,7 +121,7 @@
 		_react2.default.createElement(
 			_reactRouter.Route,
 			{ path: '/', component: Layout },
-			_react2.default.createElement(_reactRouter.IndexRoute, { component: _mainContainer2.default }),
+			_react2.default.createElement(_reactRouter.IndexRoute, { component: _NewPostPage2.default }),
 			_react2.default.createElement(_reactRouter.Route, { path: 'home', component: _mainContainer2.default }),
 			_react2.default.createElement(_reactRouter.Route, { path: 'newPost', component: _NewPostPage2.default }),
 			_react2.default.createElement(_reactRouter.Route, { path: 'postPage', component: _postPage2.default }),
@@ -27315,7 +27307,6 @@
 	                    mainBg: post.mainBg
 	                });
 	            });
-
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'mainContainer' },
@@ -27327,18 +27318,6 @@
 
 	    return MainContainer;
 	}(_react2.default.Component);
-	//ES5
-
-	// var ids = ['5632953c4e345e145fdf2df8','563295464e345e145fdf2df9']
-	// var messages = ids.map(function (value) {
-	//   return "ID is " + value // explicit return
-	// });
-
-	//ES6
-
-	// var ids = ['5632953c4e345e145fdf2df8','563295464e345e145fdf2df9']
-	// var messages = ids.map(value => `ID is ${value}`) // implicit return
-
 
 	exports.default = MainContainer;
 
@@ -30569,6 +30548,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _superagent = __webpack_require__(249);
+
+	var _superagent2 = _interopRequireDefault(_superagent);
+
 	__webpack_require__(261);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -30579,19 +30562,48 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var NewPostPage = function (_React$Component) {
-	    _inherits(NewPostPage, _React$Component);
+	var NewPostPageContainer = function (_React$Component) {
+	    _inherits(NewPostPageContainer, _React$Component);
+
+	    function NewPostPageContainer() {
+	        _classCallCheck(this, NewPostPageContainer);
+
+	        return _possibleConstructorReturn(this, (NewPostPageContainer.__proto__ || Object.getPrototypeOf(NewPostPageContainer)).apply(this, arguments));
+	    }
+
+	    _createClass(NewPostPageContainer, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(NewPostPage, { onPostAdd: this.savePost.bind(this) });
+	        }
+	    }, {
+	        key: 'savePost',
+	        value: function savePost(data) {
+	            var url = '/home';
+	            _superagent2.default.post(url).send(data).end(function () {
+	                alert('yop!');
+	            });
+	        }
+	    }]);
+
+	    return NewPostPageContainer;
+	}(_react2.default.Component);
+
+	exports.default = NewPostPageContainer;
+
+	var NewPostPage = function (_React$Component2) {
+	    _inherits(NewPostPage, _React$Component2);
 
 	    function NewPostPage() {
 	        _classCallCheck(this, NewPostPage);
 
-	        var _this = _possibleConstructorReturn(this, (NewPostPage.__proto__ || Object.getPrototypeOf(NewPostPage)).call(this));
+	        var _this2 = _possibleConstructorReturn(this, (NewPostPage.__proto__ || Object.getPrototypeOf(NewPostPage)).call(this));
 
-	        _this.state = { title: '',
+	        _this2.state = { title: '',
 	            mainTxt: '',
 	            mainBg: ''
 	        };
-	        return _this;
+	        return _this2;
 	    }
 
 	    _createClass(NewPostPage, [{
@@ -30615,11 +30627,6 @@
 
 	            this.props.onPostAdd(newPost);
 	        }
-	        // handleMainBgChange (str){
-	        //     const self=this;
-	        //     this.setState({ mainBg: str.value });
-	        // }
-
 	    }, {
 	        key: 'render',
 	        value: function render() {
@@ -30695,8 +30702,6 @@
 	    return NewPostPage;
 	}(_react2.default.Component);
 
-	exports.default = NewPostPage;
-
 /***/ },
 /* 261 */
 /***/ function(module, exports) {
@@ -30708,10 +30713,10 @@
 /* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -30719,6 +30724,14 @@
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _superagent = __webpack_require__(249);
+
+	var _superagent2 = _interopRequireDefault(_superagent);
+
+	var _underscore = __webpack_require__(254);
+
+	var _underscore2 = _interopRequireDefault(_underscore);
 
 	var _PostPageElement = __webpack_require__(264);
 
@@ -30733,43 +30746,51 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	// import OptSect from "./OptSect";
-	var POST = [{
-	  "id": 1,
-	  "title": "Сорок років у пустелі",
-	  "mainTxt": "Мені не потрібен ваш Прометей, якщо він принесе вогонь – його хату спалять, а його самого відправлять десь на Сибір, Соловки чи Освєнцим. \nВеликий Брат піклується про свій народ, і не тільки про свій. І не тільки про народ. \nА і свій інформаційний простір, його побут, думки і записи в щоденниках. \nМені не потрібен Мойсей, який би 40 років вибивав із мене дух рабства, роблячи мене святою, себто вільною. \nТакого Мойсея посадять за те, що він чекає манни небесної, а не кричить під червоними прапорами «Слава робочому класу!». \nЦя кривава і затяжна зима розставила все на свої місця, вона оголила справжні обличчя можновладців, які не поміщаються в екрани телевізорів. \nЦя зима оголила мої нерви, від чого в мене тепер приступи справжньої фізичної нудоти, коли слухаю цих кухонних експертів з політики. \nЯкі голосно кричать і рвуть глотки про те, що вони все знають, що їм треба мир і стріляти вони не будуть, бо то не гуманно. \nЯкби тут був Мойсей, він би вже почав збирати клунки. 23-оьх років виявилось замало для цього народу, аби зрозуміти, що це його карма – кістьми доводити своє право на існування. \nІ винен в цьому не Великий брат, а сам народ, який дозволяє так до себе ставитись. Який не окреслив свої кордони настільки чітко, що ні в кого і не виникало би сумнівів. \nЯкий залишив практично у кожному своєму місті Вождя, який нарешті спрацював, як бомба уповільненої дії. \nЯкий з раннього дитинства говорив про велику і спільну історію. Більшість цього народу так і залишилась за примарною залізною завісою, так і не виїхавши за межі «своєї крайньої хати». \nБільшість цього народу так і залишилась байдужою до самого себе. Цей народ вмів бути тільки приниженим, його вчили бути вдячним за владу, яка від бога, але не від церкви. \nМолоде покоління не знало крові і боротьби, тому свідомо лізло під кулі. Свято вірячи, що там є місце українському патріотизму, націоналізму і світлому майбутньому. \nВони боялися собі уявити, що буде, коли її не стане. Вони билися за неї, вмирали за неї, поки ви запарювали свій час. \nКоли це все закінчиться, крім руїн ми ще матимемо, втрачену генерацію молодого покоління, яке не знатиме, де їхнє місце і чи є воно взагалі. \nТеж продаватимуть чорні обеліски? Теж отримуватимуть зарплату двічі на день і мріятимуть купити нову краватку? \nЦе покоління дивитиметься порожніми очима на політичні баталії, на «кулі в лоба», на «цю землю можна їсти», на «пишаюсь, що українець», і наливатиме нову чарку. \nБо більше немає, що робити. Хіба вити від горя, але тим краще нікому не зробиш. А в холодильнику крім пляшки польської горілки та вишень більше нічого немає. \nЦі хлопці повернуться. Їхні блукання в пустелі закінчаться трохи раніше. І вони виглядатимуть дуже недоречно на всіх наших світах потім. \nВони і далі говоритимуть мовою, яку ніхто не буде розуміти. Вони і далі житимуть в країні, за яку вони віддали, якщо не життя, то всього себе, або по частинах. \nСвоє громадянство вони ховатимуть по кишенях, аби ніхто не побачив. Цим солдатам будуть розповідати про війну, постріли та обов’язок, їх будуть тикати носом у те, чого вони наїлися. \nНове покоління втрачених героїв залишиться невідомим нікому. Нікому не потрібні їхні історії, якщо про них не можна відзняти сюжет. \nЯкщо їх не було в медіа, їх не існувало в принципі. Війна зробила їх вигнанцями і старими у 21. Нікому не потрібні їх болі і страхи, з якими вони билися щодня. \nВсім потрібні подвиги, всім потрібні двохметрові бургегри і кока-кола. І якщо між вас десь є Мойсей, будь ласка, залиш цей народ в спокої. \nВін не готовий блукати і чекати на манну небесну. Він починає самоусвідомлюватись в контексті цих кривавих революцій. \nПане Мойсею, пустелі нам не потрібно. В нас є своя земля обітована. В нас є свої клумки, в нас є своя віра, в нас є свій буремний Схід і тяжка пам'ять.",
-	  "contextMin": "Почнемо з того, що 9 травня, як День Перемоги святкують країни, що входила до складу СРСР. Генеральна Асамблея ООН у 2004 році оголосила 8 та 9 травня Днями пам’яті та примиреннями. В українському законодавстві День Перемоги визначається як «торжество безсмертного подвигу народу – переможця над фашизмом, всенародної пам’яті про боротьбу за свободу і незалежність Батьківщини». Зупинимось на двох основних моментах, «подвиг народу» - про який народ іде мова? Можливо, варто було би врахувати той ...",
-	  "mainBg": "../../img/post_2",
-	  "time": "26/02",
-	  "tags": ""
-	}];
 
 	var PostPage = function (_React$Component) {
-	  _inherits(PostPage, _React$Component);
+	    _inherits(PostPage, _React$Component);
 
-	  function PostPage() {
-	    _classCallCheck(this, PostPage);
+	    function PostPage() {
+	        _classCallCheck(this, PostPage);
 
-	    return _possibleConstructorReturn(this, (PostPage.__proto__ || Object.getPrototypeOf(PostPage)).apply(this, arguments));
-	  }
+	        var _this = _possibleConstructorReturn(this, (PostPage.__proto__ || Object.getPrototypeOf(PostPage)).call(this));
 
-	  _createClass(PostPage, [{
-	    key: "render",
-	    value: function render() {
-	      return _react2.default.createElement(
-	        "div",
-	        null,
-	        POST.map(function (post) {
-	          return _react2.default.createElement(_PostPageElement2.default, {
-	            key: post.id,
-	            title: post.title,
-	            context: post.contextMin
-	          });
-	        })
-	      );
+	        _this.state = {};
+	        return _this;
 	    }
-	  }]);
 
-	  return PostPage;
+	    _createClass(PostPage, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var _this2 = this;
+
+	            var url = '/posts/:' + this.props._id;
+	            _superagent2.default.get(url).then(function (response) {
+	                _this2.setState({
+	                    post: response.body
+	                });
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var post = _underscore2.default.map(this.state.post, function (post) {
+	                return _react2.default.createElement(_PostPageElement2.default, {
+	                    key: post.id,
+	                    title: post.title,
+	                    mainTxt: post.mainTxt,
+	                    mainBg: post.mainBg
+	                });
+	            });
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                post
+	            );
+	        }
+	    }]);
+
+	    return PostPage;
 	}(_react2.default.Component);
 
 	exports.default = PostPage;

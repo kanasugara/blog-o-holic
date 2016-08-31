@@ -1,8 +1,24 @@
 import React from 'react';
+import Request from 'superagent';
 
 import './newPostPage.css';
 
-export default class NewPostPage extends React.Component{
+export default class NewPostPageContainer extends React.Component {
+    render() {
+        return <NewPostPage onPostAdd={this.savePost.bind(this)} />
+    }
+
+    savePost(data){
+        const url = `/home`;
+        Request.post(url)
+        .send(data)
+        .end( () => {
+            alert('yop!')
+        })
+    }
+}
+
+class NewPostPage extends React.Component{
     constructor() {
     super();
         this.state = {  title: ''   ,
@@ -25,11 +41,6 @@ export default class NewPostPage extends React.Component{
 
         this.props.onPostAdd(newPost);
     }
-    // handleMainBgChange (str){
-    //     const self=this;
-    //     this.setState({ mainBg: str.value });
-    // }
-
     render() {
         return ( 
             <div className='PostEditorWrapper'>

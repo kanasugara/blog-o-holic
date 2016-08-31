@@ -6,17 +6,11 @@ import './styles.css'
 
 import Header from './Layout/Header';
 import MainContainer from './MainPage/mainContainer';
-import NewPostPage from './NewPostPage/NewPostPage';
+import NewPostPageContainer from './NewPostPage/NewPostPage';
 import PostPage from './SinglePostPage/postPage';
 import ProfilePage from './ProfilePage/ProfilePage';
 
 class Layout extends React.Component {
-	onPostAdd(data){
-		const url = `/home`;
-		console.log(data);
-		debugger;
-        Request.post(url).then(data);
-	}
 	render() {
 		return( 
 			<div>
@@ -31,9 +25,9 @@ const app = document.getElementById('app');
 ReactDOM.render(
 	<Router history={hashHistory}>
 		<Route path='/' component={Layout}>
-			<IndexRoute component={MainContainer} />
+			<IndexRoute component={NewPostPageContainer} />
 			<Route path='home' component={MainContainer} />
-			<Route path='newPost' component={NewPostPage} />
+			<Route path='newPost' component={NewPostPageContainer} />
 			<Route path='postPage' component={PostPage} />
 			<Route path='profile' component={ProfilePage} />
 		</Route>
