@@ -25,9 +25,6 @@ app.use(cors({ origin: '*' }));
 // Using morgan middleware for logging all requests
 app.use(morgan('dev'));
 
-
-
-//for now
 app.get('/', (req, res) => {
     res.render('app/index.html');
 });
@@ -36,6 +33,9 @@ app.get('/', (req, res) => {
 // RESTful api handlers
 app.get('/home', (req, res) => {
     db.listPosts().then(data => res.send(data));
+});
+app.get('/posts/:id', (req, res) => {
+    db.listOnePost(req.params.id).then(data => res.send(data));
 });
 
 app.post('/home', (req, res) => {

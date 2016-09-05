@@ -11,6 +11,9 @@ export function setUpConnection() {
 export function listPosts(data) {
     return Post.find();
 }
+export function listOnePost(id) {
+    return Post.findById(id);
+}
 
 export function createPost(data) {
     const post = new Post({

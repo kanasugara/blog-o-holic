@@ -25,7 +25,7 @@ const app = document.getElementById('app');
 ReactDOM.render(
 	<Router history={hashHistory}>
 		<Route path='/' component={Layout}>
-			<IndexRoute component={NewPostPageContainer} />
+			<IndexRoute component={PostPage} />
 			<Route path='home' component={MainContainer} />
 			<Route path='newPost' component={NewPostPageContainer} />
 			<Route path='postPage' component={PostPage} />

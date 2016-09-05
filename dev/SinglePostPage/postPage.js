@@ -12,7 +12,7 @@ export default class PostPage extends React.Component{
           this.state = {};
       }
     componentWillMount(){
-        const url = `/posts/:${this.props._id}`;
+        const url = '/posts/57c6d6252a3c3f109c915a78';
         Request.get(url).then((response) => {
             this.setState({
                 post: response.body
@@ -20,17 +20,15 @@ export default class PostPage extends React.Component{
         })
     }
     render() {
-        var post = _.map(this.state.post, (post) => {
-            return <PostPageElement  
-              key = {post.id}  
-              title = {post.title} 
-              mainTxt = {post.mainTxt}
-              mainBg = {post.mainBg}
-            />;
-        });
+        var postData = this.state.post;
     return (
       <div>
-        {post}
+        <PostPageElement  
+              key = {postData.id}  
+              title = {postData.title} 
+              mainTxt = {postData.mainTxt}
+              mainBg = {postData.mainBg}
+        />;
       </div>
     );
   }

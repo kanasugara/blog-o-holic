@@ -121,7 +121,7 @@
 		_react2.default.createElement(
 			_reactRouter.Route,
 			{ path: '/', component: Layout },
-			_react2.default.createElement(_reactRouter.IndexRoute, { component: _NewPostPage2.default }),
+			_react2.default.createElement(_reactRouter.IndexRoute, { component: _postPage2.default }),
 			_react2.default.createElement(_reactRouter.Route, { path: 'home', component: _mainContainer2.default }),
 			_react2.default.createElement(_reactRouter.Route, { path: 'newPost', component: _NewPostPage2.default }),
 			_react2.default.createElement(_reactRouter.Route, { path: 'postPage', component: _postPage2.default }),
@@ -30459,6 +30459,8 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(172);
+
 	__webpack_require__(258);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -30481,10 +30483,6 @@
 	    _createClass(Post, [{
 	        key: 'render',
 	        value: function render() {
-	            var style = {
-	                backgroundImage: 'url(' + this.props.mainBg + ')'
-	            };
-	            console.log(style);
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'postWrapper', style: style },
@@ -30507,7 +30505,11 @@
 	                        _react2.default.createElement(
 	                            'button',
 	                            { className: 'postEditButton' },
-	                            'Edit'
+	                            _react2.default.createElement(
+	                                _reactRouter.Link,
+	                                { to: '/posts/' + this.props.key },
+	                                'Edit'
+	                            )
 	                        )
 	                    ),
 	                    _react2.default.createElement(
@@ -30764,7 +30766,7 @@
 	        value: function componentWillMount() {
 	            var _this2 = this;
 
-	            var url = '/posts/:' + this.props._id;
+	            var url = '/posts/57c6d6252a3c3f109c915a78';
 	            _superagent2.default.get(url).then(function (response) {
 	                _this2.setState({
 	                    post: response.body
@@ -30774,18 +30776,17 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var post = _underscore2.default.map(this.state.post, function (post) {
-	                return _react2.default.createElement(_PostPageElement2.default, {
-	                    key: post.id,
-	                    title: post.title,
-	                    mainTxt: post.mainTxt,
-	                    mainBg: post.mainBg
-	                });
-	            });
+	            var postData = this.state.post;
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                post
+	                _react2.default.createElement(_PostPageElement2.default, {
+	                    key: postData.id,
+	                    title: postData.title,
+	                    mainTxt: postData.mainTxt,
+	                    mainBg: postData.mainBg
+	                }),
+	                ';'
 	            );
 	        }
 	    }]);
