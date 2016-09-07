@@ -7,7 +7,6 @@ export default class NewPostPageContainer extends React.Component {
     render() {
         return <NewPostPage onPostAdd={this.savePost.bind(this)} />
     }
-
     savePost(data){
         const url = `/home`;
         Request.post(url)

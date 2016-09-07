@@ -1,5 +1,6 @@
 import React from 'react';
 import Request from 'superagent';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import _ from 'underscore'
 
 import './MainContainer.css'
@@ -32,7 +33,12 @@ export default class MainContainer extends React.Component{
         return ( 
             <div id = "mainContainer">
                 <newPost />
-                {posts}
+                <ReactCSSTransitionGroup 
+                    transitionName="example" 
+                    transitionEnterTimeout={500} 
+                    transitionLeaveTimeout={300}>
+                        {posts}
+                </ReactCSSTransitionGroup>
             </div> 
         );
     }
