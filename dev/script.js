@@ -28,7 +28,7 @@ ReactDOM.render(
 			<IndexRoute component={PostPage} />
 			<Route path='home' component={MainContainer} />
 			<Route path='newPost' component={NewPostPageContainer} />
-			<Route path='postPage' component={PostPage} />
+			<Route path='posts/:id' component={PostPage} />
 			<Route path='profile' component={ProfilePage} />
 		</Route>
 	</Router>, 

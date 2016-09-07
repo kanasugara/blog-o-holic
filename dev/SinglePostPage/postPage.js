@@ -1,6 +1,5 @@
 import React from "react";
 import Request from 'superagent';
-import _ from 'underscore'
 
 import PostPageElement from './PostPageElement';
 
@@ -9,10 +8,12 @@ import PostPageElement from './PostPageElement';
 export default class PostPage extends React.Component{
     constructor() {
       super();
-          this.state = {};
+          this.state = {  
+            post: ''   ,
+            };
       }
     componentWillMount(){
-        const url = '/posts/57c6d6252a3c3f109c915a78';
+        const url = `/posts/${this.props.params.id}`;
         Request.get(url).then((response) => {
             this.setState({
                 post: response.body
@@ -20,15 +21,16 @@ export default class PostPage extends React.Component{
         })
     }
     render() {
-        var postData = this.state.post;
+      var post = this.state.post;
     return (
       <div>
-        <PostPageElement  
-              key = {postData.id}  
-              title = {postData.title} 
-              mainTxt = {postData.mainTxt}
-              mainBg = {postData.mainBg}
-        />;
+        <PostPageElement 
+                    key = {post._id}
+                    id = {post._id} 
+                    title = {post.title} 
+                    mainTxt = {post.mainTxt}
+                    mainBg = {post.mainBg}
+            />;
       </div>
     );
   }

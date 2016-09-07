@@ -22,7 +22,8 @@ export default class MainContainer extends React.Component{
     render() {
         var posts = _.map(this.state.posts, (post) => {
             return <Post 
-                    key = {post.id}  
+                    key = {post._id}
+                    id = {post._id} 
                     title = {post.title} 
                     mainTxt = {post.mainTxt}
                     mainBg = {post.mainBg}
