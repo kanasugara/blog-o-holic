@@ -5,12 +5,9 @@ import Request from 'superagent';
 import './PostMin.css'
 
 export default class Post extends React.Component{
-    handleDelete(){
-        const url = `/posts/${this.props.id}`;
-        Request.del(url)
-        .end( () => {
-            React.forceUpdate();
-        });
+    removePost(){
+        const id = this.props.id;
+        this.props.handleDelete(id);
     }
      render() {
         const style = {
@@ -26,7 +23,7 @@ export default class Post extends React.Component{
                             {this.props.title}
                         </div>
                     </Link>
-                    <button className = 'postDeleteButton' onClick={this.handleDelete.bind(this)}>X</button>
+                    <button className = 'postDeleteButton' onClick={this.removePost.bind(this)}>X</button>
                     <button className = 'postEditButton' ></button>
                 </div>
                 <Link to={`/posts/${this.props.id}`} className = 'link'>

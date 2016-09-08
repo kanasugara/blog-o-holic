@@ -20,6 +20,18 @@ export default class MainContainer extends React.Component{
             });
         });
     }
+    handleDelete(id){
+        const url = `/posts/${id}`;
+        Request.del(url)
+        .end( () => {
+            const url = `/home`;
+            Request.get(url).then((response) => {
+                this.setState({
+                    posts: response.body
+                });
+            });
+        });
+    }
     render() {
         var posts = _.map(this.state.posts, (post) => {
             return <Post 
@@ -28,6 +40,7 @@ export default class MainContainer extends React.Component{
                     title = {post.title} 
                     mainTxt = {post.mainTxt}
                     mainBg = {post.mainBg}
+                    handleDelete = {this.handleDelete.bind(this)}
             />;
         });
         return ( 
