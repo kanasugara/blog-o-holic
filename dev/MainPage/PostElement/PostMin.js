@@ -24,7 +24,7 @@ export default class Post extends React.Component{
                         </div>
                     </Link>
                     <button className = 'postDeleteButton' onClick={this.removePost.bind(this)}>X</button>
-                    <button className = 'postEditButton' ></button>
+                    <button className = 'postEditButton' ><Link to={`/edit/${this.props.id}`} /></button>
                 </div>
                 <Link to={`/posts/${this.props.id}`} className = 'link'>
                     <div className = 'postContext'>

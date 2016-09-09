@@ -15,6 +15,10 @@ export function listOnePost(id) {
     return Post.findById(id);
 }
 
+export function editOnePost(id) {
+    return Post.findById(id);
+}
+
 export function createPost(data) {
     const post = new Post({
         title: data.title,

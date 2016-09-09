@@ -3,3 +3,10 @@
     margin: 0 auto;
     overflow: hidden;
 }
+.mainPageTransitionGroup-enter{
+	opacity: 0.1;
+}
+.mainPageTransitionGroup-enter-active{
+	opacity: 1;
+	transition: 300ms ease-in-out all;
+}
