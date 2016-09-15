@@ -1,9 +1,19 @@
 import React from 'react';
 import Request from 'superagent';
+import { browserHistory } from 'react-router';
 
 import './newPostPage.css';
 
 export default class NewPostPageContainer extends React.Component {
+    componentWillMount(){
+        const url = `/edit/${this.props.params.id}`;
+        Request.get(url).then((response) => {
+            this.setState({
+                title: response.body.title,
+                mainTxt: response.body.mainTxt
+            })
+        })
+    }
     render() {
         return <NewPostPage onPostAdd={this.savePost.bind(this)} />
     }
@@ -12,18 +22,19 @@ export default class NewPostPageContainer extends React.Component {
         Request.post(url)
         .send(data)
         .end( () => {
-            alert('yop!')
+            browserHistory.push('home')
         })
     }
 }
 
 class NewPostPage extends React.Component{
     constructor() {
-    super();
-        this.state = {  title: ''   ,
-                        mainTxt: '' ,
-                        mainBg: '' 
-                        };
+        super();
+            this.state = {  
+                title: '' ,
+                mainTxt: '',
+                mainBg: '' 
+            };
     }
     handleTitleChange(event) {
         this.setState({ title: event.target.value });
@@ -40,6 +51,7 @@ class NewPostPage extends React.Component{
 
         this.props.onPostAdd(newPost);
     }
+   
     render() {
         return ( 
             <div className='PostEditorWrapper'>

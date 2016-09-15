@@ -9,7 +9,7 @@ export function setUpConnection() {
 }
 
 export function listPosts(data) {
-    return Post.find();
+    return Post.find().sort({ createdAt: -1 });
 }
 export function listOnePost(id) {
     return Post.findById(id);

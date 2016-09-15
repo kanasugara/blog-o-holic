@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, IndexRoute, hashHistory} from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import './fonts.css'
 import './styles.css'
 
@@ -23,7 +23,7 @@ class Layout extends React.Component {
 }
 const app = document.getElementById('app');
 ReactDOM.render(
-	<Router history={hashHistory}>
+	<Router history={browserHistory}>
 		<Route path='/' component={Layout}>
 			<IndexRoute component={MainContainer} />
 			<Route path='home' component={MainContainer} />
