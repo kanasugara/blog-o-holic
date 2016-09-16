@@ -1,5 +1,4 @@
 import express from 'express';
-import cors from 'cors';
 import bodyParser from 'body-parser';
 
 import morgan from "morgan";  
@@ -18,9 +17,6 @@ db.setUpConnection();
 
 // Using bodyParser middleware
 app.use( bodyParser.json() );
-
-// Allow requests from any origin
-app.use(cors({ origin: '*' }));
 
 // Using morgan middleware for logging all requests
 app.use(morgan('dev'));

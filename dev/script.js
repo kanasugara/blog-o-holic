@@ -4,6 +4,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import './fonts.css'
 import './styles.css'
 
+import EditPostPageContainer from './EditPostPage/EditPostPage';
 import Header from './Layout/Header';
 import MainContainer from './MainPage/mainContainer';
 import NewPostPageContainer from './NewPostPage/NewPostPage';
@@ -28,7 +29,7 @@ ReactDOM.render(
 			<IndexRoute component={MainContainer} />
 			<Route path='home' component={MainContainer} />
 			<Route path='newPost' component={NewPostPageContainer} />
-			<Route path='edit/:id' component={NewPostPageContainer} />
+			<Route path='edit/:id' component={EditPostPageContainer} />
 			<Route path='posts/:id' component={PostPage} />
 			<Route path='profile' component={ProfilePage} />
 		</Route>

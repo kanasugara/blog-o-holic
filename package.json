@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "body-parser": "^1.15.0",
-    "cors": "*",
     "express": "^3.2.6",
     "history": "^3.0.0",
     "html": "0.0.10",
