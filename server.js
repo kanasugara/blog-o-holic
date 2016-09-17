@@ -38,6 +38,10 @@ app.get('/edit/:id', (req, res) => {
     db.editOnePost(req.params.id).then(data => res.send(data));
 });
 
+app.put('/edit', (req, res) => {
+    db.saveEditedPost(req.body).then(data => res.send(data));
+});
+
 app.post('/home', (req, res) => {
     db.createPost(req.body).then(data => res.send(data));
 });

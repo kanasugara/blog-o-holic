@@ -19,6 +19,16 @@ export function editOnePost(id) {
     return Post.findById(id);
 }
 
+export function saveEditedPost(newData) {
+    const editedPost = {         
+        title: newData.title,
+        mainBg: newData.mainBg,
+        mainTxt: newData.mainTxt,
+        editedAt: new Date()
+    };
+    return Post.findOneAndUpdate({ _id : newData.id }, { $set: editedPost });
+}
+
 export function createPost(data) {
     const post = new Post({
         title: data.title,

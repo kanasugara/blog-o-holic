@@ -5,6 +5,12 @@ import { browserHistory } from 'react-router';
 import './EditPostPage.css';
 
 export default class EditPostPageContainer extends React.Component {
+    constructor() {
+      super();
+          this.state = {  
+            post: ''   ,
+            };
+      }
     componentWillMount(){
         const url = `/edit/${this.props.params.id}`;
         Request.get(url).then((response) => {
@@ -16,7 +22,7 @@ export default class EditPostPageContainer extends React.Component {
     render() {
         var data = this.state.post
         return <EditPostPage 
-                    onPostAdd = {this.savePost.bind(this)}
+                    onPostEdit = {this.editPost.bind(this)}
                     key = {data._id}
                     id = {data._id}
                     title = {data.title}
@@ -25,11 +31,11 @@ export default class EditPostPageContainer extends React.Component {
                 />
     }
     editPost(data){
-        const url = `/home`;
+        const url = `/edit`;
         Request.put(url)
         .send(data)
         .end( () => {
-            browserHistory.push(`posts/${this.state.post._id}`)
+            browserHistory.push(`home`)
         })
     }
 }
@@ -37,11 +43,7 @@ export default class EditPostPageContainer extends React.Component {
 class EditPostPage extends React.Component{
     constructor() {
         super();
-            this.state = {  
-                title: this.props.title ,
-                mainTxt: this.props.mainTxt ,
-                mainBg: this.props.mainBg 
-            };
+            this.state = {};
     }
     handleTitleChange(event) {
         this.setState({ title: event.target.value });
@@ -50,18 +52,24 @@ class EditPostPage extends React.Component{
         this.setState({ mainTxt: event.target.value });
     }
     handleMainBgChange(event) {
-        this.setState({ mainTxt: event.target.value });
+        this.setState({ mainBg: event.target.value });
     }
-    handlePostAdd() {
+    handlePostEdit() {
         const editedPost = {
+            id : this.props.id  ,
             title: this.state.title,
             mainTxt: this.state.mainTxt,
             mainBg: this.state.mainBg
         };
-
         this.props.onPostEdit(editedPost);
     }
-   
+    componentWillMount(){
+        this.setState({
+            title: this.props.title ,
+            mainTxt: this.props.mainTxt ,
+            mainBg: this.props.mainBg 
+        })
+    }   
     render() {
         return ( 
             <div className='PostEditorWrapper'>
@@ -98,7 +106,7 @@ class EditPostPage extends React.Component{
                             disabled={!this.state.mainTxt}
                             onClick={this.handlePostEdit.bind(this)}
                         >
-                        Save
+                        Edit
                         </button>
                     </div>
                 </div> 
