@@ -62,23 +62,27 @@
 
 	__webpack_require__(243);
 
-	var _Header = __webpack_require__(245);
+	var _EditPostPage = __webpack_require__(245);
+
+	var _EditPostPage2 = _interopRequireDefault(_EditPostPage);
+
+	var _Header = __webpack_require__(253);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _mainContainer = __webpack_require__(248);
+	var _mainContainer = __webpack_require__(256);
 
 	var _mainContainer2 = _interopRequireDefault(_mainContainer);
 
-	var _NewPostPage = __webpack_require__(260);
+	var _NewPostPage = __webpack_require__(270);
 
 	var _NewPostPage2 = _interopRequireDefault(_NewPostPage);
 
-	var _postPage = __webpack_require__(263);
+	var _postPage = __webpack_require__(273);
 
 	var _postPage2 = _interopRequireDefault(_postPage);
 
-	var _ProfilePage = __webpack_require__(268);
+	var _ProfilePage = __webpack_require__(278);
 
 	var _ProfilePage2 = _interopRequireDefault(_ProfilePage);
 
@@ -117,14 +121,15 @@
 	var app = document.getElementById('app');
 	_reactDom2.default.render(_react2.default.createElement(
 		_reactRouter.Router,
-		{ history: _reactRouter.hashHistory },
+		{ history: _reactRouter.browserHistory },
 		_react2.default.createElement(
 			_reactRouter.Route,
 			{ path: '/', component: Layout },
-			_react2.default.createElement(_reactRouter.IndexRoute, { component: _postPage2.default }),
+			_react2.default.createElement(_reactRouter.IndexRoute, { component: _mainContainer2.default }),
 			_react2.default.createElement(_reactRouter.Route, { path: 'home', component: _mainContainer2.default }),
 			_react2.default.createElement(_reactRouter.Route, { path: 'newPost', component: _NewPostPage2.default }),
-			_react2.default.createElement(_reactRouter.Route, { path: 'postPage', component: _postPage2.default }),
+			_react2.default.createElement(_reactRouter.Route, { path: 'edit/:id', component: _EditPostPage2.default }),
+			_react2.default.createElement(_reactRouter.Route, { path: 'posts/:id', component: _postPage2.default }),
 			_react2.default.createElement(_reactRouter.Route, { path: 'profile', component: _ProfilePage2.default })
 		)
 	), app);
@@ -248,25 +253,40 @@
 	var cachedSetTimeout;
 	var cachedClearTimeout;
 
+	function defaultSetTimout() {
+	    throw new Error('setTimeout has not been defined');
+	}
+	function defaultClearTimeout () {
+	    throw new Error('clearTimeout has not been defined');
+	}
 	(function () {
 	    try {
-	        cachedSetTimeout = setTimeout;
-	    } catch (e) {
-	        cachedSetTimeout = function () {
-	            throw new Error('setTimeout is not defined');
+	        if (typeof setTimeout === 'function') {
+	            cachedSetTimeout = setTimeout;
+	        } else {
+	            cachedSetTimeout = defaultSetTimout;
 	        }
+	    } catch (e) {
+	        cachedSetTimeout = defaultSetTimout;
 	    }
 	    try {
-	        cachedClearTimeout = clearTimeout;
-	    } catch (e) {
-	        cachedClearTimeout = function () {
-	            throw new Error('clearTimeout is not defined');
+	        if (typeof clearTimeout === 'function') {
+	            cachedClearTimeout = clearTimeout;
+	        } else {
+	            cachedClearTimeout = defaultClearTimeout;
 	        }
+	    } catch (e) {
+	        cachedClearTimeout = defaultClearTimeout;
 	    }
 	} ())
 	function runTimeout(fun) {
 	    if (cachedSetTimeout === setTimeout) {
 	        //normal enviroments in sane situations
+	        return setTimeout(fun, 0);
+	    }
+	    // if setTimeout wasn't available but was latter defined
+	    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+	        cachedSetTimeout = setTimeout;
 	        return setTimeout(fun, 0);
 	    }
 	    try {
@@ -287,6 +307,11 @@
 	function runClearTimeout(marker) {
 	    if (cachedClearTimeout === clearTimeout) {
 	        //normal enviroments in sane situations
+	        return clearTimeout(marker);
+	    }
+	    // if clearTimeout wasn't available but was latter defined
+	    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+	        cachedClearTimeout = clearTimeout;
 	        return clearTimeout(marker);
 	    }
 	    try {
@@ -24367,7 +24392,7 @@
 	          if (error) {
 	            listener(error);
 	          } else if (redirectLocation) {
-	            history.transitionTo(redirectLocation);
+	            history.replace(redirectLocation);
 	          } else if (nextState) {
 	            listener(null, nextState);
 	          } else {
@@ -25535,7 +25560,7 @@
 	  },
 
 	  propTypes: {
-	    to: oneOfType([string, object]).isRequired,
+	    to: oneOfType([string, object]),
 	    query: object,
 	    hash: string,
 	    state: object,
@@ -25596,6 +25621,11 @@
 
 
 	    if (router) {
+	      // If user does not specify a `to` prop, return an empty anchor tag.
+	      if (to == null) {
+	        return _react2.default.createElement('a', props);
+	      }
+
 	      var location = createLocationDescriptor(to, { query: query, hash: hash, state: state });
 	      props.href = router.createHref(location);
 
@@ -27167,102 +27197,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(172);
-
-	__webpack_require__(246);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Header = function (_React$Component) {
-	    _inherits(Header, _React$Component);
-
-	    function Header() {
-	        _classCallCheck(this, Header);
-
-	        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
-	    }
-
-	    _createClass(Header, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'header',
-	                null,
-	                _react2.default.createElement(
-	                    'ul',
-	                    null,
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: 'home', id: 'logo' },
-	                        'blog-o-holic'
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: 'home' },
-	                        'Home'
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: 'newPost' },
-	                        'New Post'
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: 'profile' },
-	                        'Profile'
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-
-	    return Header;
-	}(_react2.default.Component);
-
-	exports.default = Header;
-
-/***/ },
-/* 246 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 247 */,
-/* 248 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _superagent = __webpack_require__(249);
+	var _superagent = __webpack_require__(246);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _underscore = __webpack_require__(254);
+	var _reactRouter = __webpack_require__(172);
 
-	var _underscore2 = _interopRequireDefault(_underscore);
-
-	__webpack_require__(255);
-
-	var _PostMin = __webpack_require__(257);
-
-	var _PostMin2 = _interopRequireDefault(_PostMin);
+	__webpack_require__(251);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27272,57 +27213,183 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var MainContainer = function (_React$Component) {
-	    _inherits(MainContainer, _React$Component);
+	var EditPostPageContainer = function (_React$Component) {
+	    _inherits(EditPostPageContainer, _React$Component);
 
-	    function MainContainer() {
-	        _classCallCheck(this, MainContainer);
+	    function EditPostPageContainer() {
+	        _classCallCheck(this, EditPostPageContainer);
 
-	        var _this = _possibleConstructorReturn(this, (MainContainer.__proto__ || Object.getPrototypeOf(MainContainer)).call(this));
+	        var _this = _possibleConstructorReturn(this, (EditPostPageContainer.__proto__ || Object.getPrototypeOf(EditPostPageContainer)).call(this));
 
-	        _this.state = {};
+	        _this.state = {
+	            post: ''
+	        };
 	        return _this;
 	    }
 
-	    _createClass(MainContainer, [{
+	    _createClass(EditPostPageContainer, [{
 	        key: 'componentWillMount',
 	        value: function componentWillMount() {
 	            var _this2 = this;
 
-	            var url = '/home';
+	            var url = '/edit/' + this.props.params.id;
 	            _superagent2.default.get(url).then(function (response) {
 	                _this2.setState({
-	                    posts: response.body
+	                    post: response.body
 	                });
 	            });
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var posts = _underscore2.default.map(this.state.posts, function (post) {
-	                return _react2.default.createElement(_PostMin2.default, {
-	                    key: post.id,
-	                    title: post.title,
-	                    mainTxt: post.mainTxt,
-	                    mainBg: post.mainBg
-	                });
+	            var data = this.state.post;
+	            return _react2.default.createElement(EditPostPage, {
+	                onPostEdit: this.editPost.bind(this),
+	                key: data._id,
+	                id: data._id,
+	                title: data.title,
+	                mainTxt: data.mainTxt,
+	                mainBg: data.mainBg
 	            });
+	        }
+	    }, {
+	        key: 'editPost',
+	        value: function editPost(data) {
+	            var url = '/edit';
+	            _superagent2.default.put(url).send(data).end(function () {
+	                _reactRouter.browserHistory.push('home');
+	            });
+	        }
+	    }]);
+
+	    return EditPostPageContainer;
+	}(_react2.default.Component);
+
+	exports.default = EditPostPageContainer;
+
+	var EditPostPage = function (_React$Component2) {
+	    _inherits(EditPostPage, _React$Component2);
+
+	    function EditPostPage() {
+	        _classCallCheck(this, EditPostPage);
+
+	        var _this3 = _possibleConstructorReturn(this, (EditPostPage.__proto__ || Object.getPrototypeOf(EditPostPage)).call(this));
+
+	        _this3.state = {};
+	        return _this3;
+	    }
+
+	    _createClass(EditPostPage, [{
+	        key: 'handleTitleChange',
+	        value: function handleTitleChange(event) {
+	            this.setState({ title: event.target.value });
+	        }
+	    }, {
+	        key: 'handleTextChange',
+	        value: function handleTextChange(event) {
+	            this.setState({ mainTxt: event.target.value });
+	        }
+	    }, {
+	        key: 'handleMainBgChange',
+	        value: function handleMainBgChange(event) {
+	            this.setState({ mainBg: event.target.value });
+	        }
+	    }, {
+	        key: 'handlePostEdit',
+	        value: function handlePostEdit() {
+	            var editedPost = {
+	                id: this.props.id,
+	                title: this.state.title,
+	                mainTxt: this.state.mainTxt,
+	                mainBg: this.state.mainBg
+	            };
+	            this.props.onPostEdit(editedPost);
+	        }
+	    }, {
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            this.setState({
+	                title: this.props.title,
+	                mainTxt: this.props.mainTxt,
+	                mainBg: this.props.mainBg
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
-	                { id: 'mainContainer' },
-	                _react2.default.createElement('newPost', null),
-	                posts
+	                { className: 'PostEditorWrapper' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'PostEditor' },
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Title:'
+	                    ),
+	                    _react2.default.createElement('input', {
+	                        type: 'text',
+	                        className: 'PostEditorTitle',
+	                        placeholder: 'Enter title',
+	                        value: this.state.title,
+	                        onChange: this.handleTitleChange.bind(this)
+	                    }),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Main Background:'
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'PostEditorMainBgWrapper' },
+	                        _react2.default.createElement('div', { id: 'PostEditorMainBgLabel' }),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'PostEditorMainBgBrowse' },
+	                            'Browse'
+	                        ),
+	                        _react2.default.createElement('input', { type: 'file',
+	                            className: 'PostEditorMainBg',
+	                            placeholder: 'Browse main Background',
+	                            onChange: this.handleMainBgChange.bind(this)
+	                        })
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Main Text:'
+	                    ),
+	                    _react2.default.createElement('textarea', {
+	                        placeholder: 'Enter text here',
+	                        rows: 35,
+	                        className: 'PostEditorMainTxt',
+	                        value: this.state.mainTxt,
+	                        onChange: this.handleTextChange.bind(this)
+	                    }),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'footerEditPage' },
+	                        _react2.default.createElement(
+	                            'button',
+	                            {
+	                                className: 'PostEditorSaveButton',
+	                                disabled: !this.state.mainTxt,
+	                                onClick: this.handlePostEdit.bind(this)
+	                            },
+	                            'Edit'
+	                        )
+	                    )
+	                )
 	            );
 	        }
 	    }]);
 
-	    return MainContainer;
+	    return EditPostPage;
 	}(_react2.default.Component);
 
-	exports.default = MainContainer;
-
 /***/ },
-/* 249 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -27339,9 +27406,9 @@
 	  root = this;
 	}
 
-	var Emitter = __webpack_require__(250);
-	var requestBase = __webpack_require__(251);
-	var isObject = __webpack_require__(252);
+	var Emitter = __webpack_require__(247);
+	var requestBase = __webpack_require__(248);
+	var isObject = __webpack_require__(249);
 
 	/**
 	 * Noop.
@@ -27353,7 +27420,7 @@
 	 * Expose `request`.
 	 */
 
-	var request = module.exports = __webpack_require__(253).bind(null, Request);
+	var request = module.exports = __webpack_require__(250).bind(null, Request);
 
 	/**
 	 * Determine XHR.
@@ -28304,7 +28371,7 @@
 
 
 /***/ },
-/* 250 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -28473,13 +28540,13 @@
 
 
 /***/ },
-/* 251 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(252);
+	var isObject = __webpack_require__(249);
 
 	/**
 	 * Clear previous timeout.
@@ -28826,7 +28893,7 @@
 
 
 /***/ },
-/* 252 */
+/* 249 */
 /***/ function(module, exports) {
 
 	/**
@@ -28845,7 +28912,7 @@
 
 
 /***/ },
-/* 253 */
+/* 250 */
 /***/ function(module, exports) {
 
 	// The node and browser modules expose versions of this with the
@@ -28883,7 +28950,1050 @@
 
 
 /***/ },
+/* 251 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 252 */,
+/* 253 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(172);
+
+	__webpack_require__(254);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Header = function (_React$Component) {
+	    _inherits(Header, _React$Component);
+
+	    function Header() {
+	        _classCallCheck(this, Header);
+
+	        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+	    }
+
+	    _createClass(Header, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'header',
+	                null,
+	                _react2.default.createElement(
+	                    'ul',
+	                    null,
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: 'home', id: 'logo' },
+	                        'blog-o-holic'
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: 'home' },
+	                        'Home'
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: 'newPost' },
+	                        'New Post'
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: 'profile' },
+	                        'Profile'
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Header;
+	}(_react2.default.Component);
+
+	exports.default = Header;
+
+/***/ },
 /* 254 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 255 */,
+/* 256 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _superagent = __webpack_require__(246);
+
+	var _superagent2 = _interopRequireDefault(_superagent);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(257);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	var _underscore = __webpack_require__(264);
+
+	var _underscore2 = _interopRequireDefault(_underscore);
+
+	__webpack_require__(265);
+
+	var _PostMin = __webpack_require__(267);
+
+	var _PostMin2 = _interopRequireDefault(_PostMin);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var MainContainer = function (_React$Component) {
+	    _inherits(MainContainer, _React$Component);
+
+	    function MainContainer() {
+	        _classCallCheck(this, MainContainer);
+
+	        var _this = _possibleConstructorReturn(this, (MainContainer.__proto__ || Object.getPrototypeOf(MainContainer)).call(this));
+
+	        _this.state = {};
+	        return _this;
+	    }
+
+	    _createClass(MainContainer, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var _this2 = this;
+
+	            var url = '/home';
+	            _superagent2.default.get(url).then(function (response) {
+	                _this2.setState({
+	                    posts: response.body
+	                });
+	            });
+	        }
+	    }, {
+	        key: 'handleDelete',
+	        value: function handleDelete(id) {
+	            var _this3 = this;
+
+	            var url = '/posts/' + id;
+	            _superagent2.default.del(url).end(function () {
+	                var url = '/home';
+	                _superagent2.default.get(url).then(function (response) {
+	                    _this3.setState({
+	                        posts: response.body
+	                    });
+	                });
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this4 = this;
+
+	            var posts = _underscore2.default.map(this.state.posts, function (post) {
+	                return _react2.default.createElement(_PostMin2.default, {
+	                    key: post._id,
+	                    id: post._id,
+	                    title: post.title,
+	                    mainTxt: post.mainTxt,
+	                    mainBg: post.mainBg,
+	                    handleDelete: _this4.handleDelete.bind(_this4)
+	                });
+	            });
+	            return _react2.default.createElement(
+	                'div',
+	                { id: 'mainContainer' },
+	                _react2.default.createElement('newPost', null),
+	                _react2.default.createElement(
+	                    _reactAddonsCssTransitionGroup2.default,
+	                    {
+	                        transitionName: 'mainPageTransitionGroup',
+	                        transitionEnterTimeout: 500,
+	                        transitionLeaveTimeout: 300 },
+	                    posts
+	                )
+	            );
+	        }
+	    }]);
+
+	    return MainContainer;
+	}(_react2.default.Component);
+
+	exports.default = MainContainer;
+
+/***/ },
+/* 257 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(258);
+
+/***/ },
+/* 258 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule ReactCSSTransitionGroup
+	 */
+
+	'use strict';
+
+	var _assign = __webpack_require__(4);
+
+	var React = __webpack_require__(2);
+
+	var ReactTransitionGroup = __webpack_require__(259);
+	var ReactCSSTransitionGroupChild = __webpack_require__(261);
+
+	function createTransitionTimeoutPropValidator(transitionType) {
+	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
+	  var enabledPropName = 'transition' + transitionType;
+
+	  return function (props) {
+	    // If the transition is enabled
+	    if (props[enabledPropName]) {
+	      // If no timeout duration is provided
+	      if (props[timeoutPropName] == null) {
+	        return new Error(timeoutPropName + ' wasn\'t supplied to ReactCSSTransitionGroup: ' + 'this can cause unreliable animations and won\'t be supported in ' + 'a future version of React. See ' + 'https://fb.me/react-animation-transition-group-timeout for more ' + 'information.');
+
+	        // If the duration isn't a number
+	      } else if (typeof props[timeoutPropName] !== 'number') {
+	          return new Error(timeoutPropName + ' must be a number (in milliseconds)');
+	        }
+	    }
+	  };
+	}
+
+	/**
+	 * An easy way to perform CSS transitions and animations when a React component
+	 * enters or leaves the DOM.
+	 * See https://facebook.github.io/react/docs/animation.html#high-level-api-reactcsstransitiongroup
+	 */
+	var ReactCSSTransitionGroup = React.createClass({
+	  displayName: 'ReactCSSTransitionGroup',
+
+	  propTypes: {
+	    transitionName: ReactCSSTransitionGroupChild.propTypes.name,
+
+	    transitionAppear: React.PropTypes.bool,
+	    transitionEnter: React.PropTypes.bool,
+	    transitionLeave: React.PropTypes.bool,
+	    transitionAppearTimeout: createTransitionTimeoutPropValidator('Appear'),
+	    transitionEnterTimeout: createTransitionTimeoutPropValidator('Enter'),
+	    transitionLeaveTimeout: createTransitionTimeoutPropValidator('Leave')
+	  },
+
+	  getDefaultProps: function () {
+	    return {
+	      transitionAppear: false,
+	      transitionEnter: true,
+	      transitionLeave: true
+	    };
+	  },
+
+	  _wrapChild: function (child) {
+	    // We need to provide this childFactory so that
+	    // ReactCSSTransitionGroupChild can receive updates to name, enter, and
+	    // leave while it is leaving.
+	    return React.createElement(ReactCSSTransitionGroupChild, {
+	      name: this.props.transitionName,
+	      appear: this.props.transitionAppear,
+	      enter: this.props.transitionEnter,
+	      leave: this.props.transitionLeave,
+	      appearTimeout: this.props.transitionAppearTimeout,
+	      enterTimeout: this.props.transitionEnterTimeout,
+	      leaveTimeout: this.props.transitionLeaveTimeout
+	    }, child);
+	  },
+
+	  render: function () {
+	    return React.createElement(ReactTransitionGroup, _assign({}, this.props, { childFactory: this._wrapChild }));
+	  }
+	});
+
+	module.exports = ReactCSSTransitionGroup;
+
+/***/ },
+/* 259 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule ReactTransitionGroup
+	 */
+
+	'use strict';
+
+	var _assign = __webpack_require__(4);
+
+	var React = __webpack_require__(2);
+	var ReactInstanceMap = __webpack_require__(119);
+	var ReactTransitionChildMapping = __webpack_require__(260);
+
+	var emptyFunction = __webpack_require__(12);
+
+	/**
+	 * A basis for animations. When children are declaratively added or removed,
+	 * special lifecycle hooks are called.
+	 * See https://facebook.github.io/react/docs/animation.html#low-level-api-reacttransitiongroup
+	 */
+	var ReactTransitionGroup = React.createClass({
+	  displayName: 'ReactTransitionGroup',
+
+	  propTypes: {
+	    component: React.PropTypes.any,
+	    childFactory: React.PropTypes.func
+	  },
+
+	  getDefaultProps: function () {
+	    return {
+	      component: 'span',
+	      childFactory: emptyFunction.thatReturnsArgument
+	    };
+	  },
+
+	  getInitialState: function () {
+	    return {
+	      // TODO: can we get useful debug information to show at this point?
+	      children: ReactTransitionChildMapping.getChildMapping(this.props.children)
+	    };
+	  },
+
+	  componentWillMount: function () {
+	    this.currentlyTransitioningKeys = {};
+	    this.keysToEnter = [];
+	    this.keysToLeave = [];
+	  },
+
+	  componentDidMount: function () {
+	    var initialChildMapping = this.state.children;
+	    for (var key in initialChildMapping) {
+	      if (initialChildMapping[key]) {
+	        this.performAppear(key);
+	      }
+	    }
+	  },
+
+	  componentWillReceiveProps: function (nextProps) {
+	    var nextChildMapping;
+	    if (process.env.NODE_ENV !== 'production') {
+	      nextChildMapping = ReactTransitionChildMapping.getChildMapping(nextProps.children, ReactInstanceMap.get(this)._debugID);
+	    } else {
+	      nextChildMapping = ReactTransitionChildMapping.getChildMapping(nextProps.children);
+	    }
+	    var prevChildMapping = this.state.children;
+
+	    this.setState({
+	      children: ReactTransitionChildMapping.mergeChildMappings(prevChildMapping, nextChildMapping)
+	    });
+
+	    var key;
+
+	    for (key in nextChildMapping) {
+	      var hasPrev = prevChildMapping && prevChildMapping.hasOwnProperty(key);
+	      if (nextChildMapping[key] && !hasPrev && !this.currentlyTransitioningKeys[key]) {
+	        this.keysToEnter.push(key);
+	      }
+	    }
+
+	    for (key in prevChildMapping) {
+	      var hasNext = nextChildMapping && nextChildMapping.hasOwnProperty(key);
+	      if (prevChildMapping[key] && !hasNext && !this.currentlyTransitioningKeys[key]) {
+	        this.keysToLeave.push(key);
+	      }
+	    }
+
+	    // If we want to someday check for reordering, we could do it here.
+	  },
+
+	  componentDidUpdate: function () {
+	    var keysToEnter = this.keysToEnter;
+	    this.keysToEnter = [];
+	    keysToEnter.forEach(this.performEnter);
+
+	    var keysToLeave = this.keysToLeave;
+	    this.keysToLeave = [];
+	    keysToLeave.forEach(this.performLeave);
+	  },
+
+	  performAppear: function (key) {
+	    this.currentlyTransitioningKeys[key] = true;
+
+	    var component = this.refs[key];
+
+	    if (component.componentWillAppear) {
+	      component.componentWillAppear(this._handleDoneAppearing.bind(this, key));
+	    } else {
+	      this._handleDoneAppearing(key);
+	    }
+	  },
+
+	  _handleDoneAppearing: function (key) {
+	    var component = this.refs[key];
+	    if (component.componentDidAppear) {
+	      component.componentDidAppear();
+	    }
+
+	    delete this.currentlyTransitioningKeys[key];
+
+	    var currentChildMapping;
+	    if (process.env.NODE_ENV !== 'production') {
+	      currentChildMapping = ReactTransitionChildMapping.getChildMapping(this.props.children, ReactInstanceMap.get(this)._debugID);
+	    } else {
+	      currentChildMapping = ReactTransitionChildMapping.getChildMapping(this.props.children);
+	    }
+
+	    if (!currentChildMapping || !currentChildMapping.hasOwnProperty(key)) {
+	      // This was removed before it had fully appeared. Remove it.
+	      this.performLeave(key);
+	    }
+	  },
+
+	  performEnter: function (key) {
+	    this.currentlyTransitioningKeys[key] = true;
+
+	    var component = this.refs[key];
+
+	    if (component.componentWillEnter) {
+	      component.componentWillEnter(this._handleDoneEntering.bind(this, key));
+	    } else {
+	      this._handleDoneEntering(key);
+	    }
+	  },
+
+	  _handleDoneEntering: function (key) {
+	    var component = this.refs[key];
+	    if (component.componentDidEnter) {
+	      component.componentDidEnter();
+	    }
+
+	    delete this.currentlyTransitioningKeys[key];
+
+	    var currentChildMapping;
+	    if (process.env.NODE_ENV !== 'production') {
+	      currentChildMapping = ReactTransitionChildMapping.getChildMapping(this.props.children, ReactInstanceMap.get(this)._debugID);
+	    } else {
+	      currentChildMapping = ReactTransitionChildMapping.getChildMapping(this.props.children);
+	    }
+
+	    if (!currentChildMapping || !currentChildMapping.hasOwnProperty(key)) {
+	      // This was removed before it had fully entered. Remove it.
+	      this.performLeave(key);
+	    }
+	  },
+
+	  performLeave: function (key) {
+	    this.currentlyTransitioningKeys[key] = true;
+
+	    var component = this.refs[key];
+	    if (component.componentWillLeave) {
+	      component.componentWillLeave(this._handleDoneLeaving.bind(this, key));
+	    } else {
+	      // Note that this is somewhat dangerous b/c it calls setState()
+	      // again, effectively mutating the component before all the work
+	      // is done.
+	      this._handleDoneLeaving(key);
+	    }
+	  },
+
+	  _handleDoneLeaving: function (key) {
+	    var component = this.refs[key];
+
+	    if (component.componentDidLeave) {
+	      component.componentDidLeave();
+	    }
+
+	    delete this.currentlyTransitioningKeys[key];
+
+	    var currentChildMapping;
+	    if (process.env.NODE_ENV !== 'production') {
+	      currentChildMapping = ReactTransitionChildMapping.getChildMapping(this.props.children, ReactInstanceMap.get(this)._debugID);
+	    } else {
+	      currentChildMapping = ReactTransitionChildMapping.getChildMapping(this.props.children);
+	    }
+
+	    if (currentChildMapping && currentChildMapping.hasOwnProperty(key)) {
+	      // This entered again before it fully left. Add it again.
+	      this.performEnter(key);
+	    } else {
+	      this.setState(function (state) {
+	        var newChildren = _assign({}, state.children);
+	        delete newChildren[key];
+	        return { children: newChildren };
+	      });
+	    }
+	  },
+
+	  render: function () {
+	    // TODO: we could get rid of the need for the wrapper node
+	    // by cloning a single child
+	    var childrenToRender = [];
+	    for (var key in this.state.children) {
+	      var child = this.state.children[key];
+	      if (child) {
+	        // You may need to apply reactive updates to a child as it is leaving.
+	        // The normal React way to do it won't work since the child will have
+	        // already been removed. In case you need this behavior you can provide
+	        // a childFactory function to wrap every child, even the ones that are
+	        // leaving.
+	        childrenToRender.push(React.cloneElement(this.props.childFactory(child), { ref: key, key: key }));
+	      }
+	    }
+
+	    // Do not forward ReactTransitionGroup props to primitive DOM nodes
+	    var props = _assign({}, this.props);
+	    delete props.transitionLeave;
+	    delete props.transitionName;
+	    delete props.transitionAppear;
+	    delete props.transitionEnter;
+	    delete props.childFactory;
+	    delete props.transitionLeaveTimeout;
+	    delete props.transitionEnterTimeout;
+	    delete props.transitionAppearTimeout;
+	    delete props.component;
+
+	    return React.createElement(this.props.component, props, childrenToRender);
+	  }
+	});
+
+	module.exports = ReactTransitionGroup;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 260 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule ReactTransitionChildMapping
+	 */
+
+	'use strict';
+
+	var flattenChildren = __webpack_require__(128);
+
+	var ReactTransitionChildMapping = {
+	  /**
+	   * Given `this.props.children`, return an object mapping key to child. Just
+	   * simple syntactic sugar around flattenChildren().
+	   *
+	   * @param {*} children `this.props.children`
+	   * @param {number=} selfDebugID Optional debugID of the current internal instance.
+	   * @return {object} Mapping of key to child
+	   */
+	  getChildMapping: function (children, selfDebugID) {
+	    if (!children) {
+	      return children;
+	    }
+
+	    if (process.env.NODE_ENV !== 'production') {
+	      return flattenChildren(children, selfDebugID);
+	    }
+
+	    return flattenChildren(children);
+	  },
+
+	  /**
+	   * When you're adding or removing children some may be added or removed in the
+	   * same render pass. We want to show *both* since we want to simultaneously
+	   * animate elements in and out. This function takes a previous set of keys
+	   * and a new set of keys and merges them with its best guess of the correct
+	   * ordering. In the future we may expose some of the utilities in
+	   * ReactMultiChild to make this easy, but for now React itself does not
+	   * directly have this concept of the union of prevChildren and nextChildren
+	   * so we implement it here.
+	   *
+	   * @param {object} prev prev children as returned from
+	   * `ReactTransitionChildMapping.getChildMapping()`.
+	   * @param {object} next next children as returned from
+	   * `ReactTransitionChildMapping.getChildMapping()`.
+	   * @return {object} a key set that contains all keys in `prev` and all keys
+	   * in `next` in a reasonable order.
+	   */
+	  mergeChildMappings: function (prev, next) {
+	    prev = prev || {};
+	    next = next || {};
+
+	    function getValueForKey(key) {
+	      if (next.hasOwnProperty(key)) {
+	        return next[key];
+	      } else {
+	        return prev[key];
+	      }
+	    }
+
+	    // For each key of `next`, the list of keys to insert before that key in
+	    // the combined list
+	    var nextKeysPending = {};
+
+	    var pendingKeys = [];
+	    for (var prevKey in prev) {
+	      if (next.hasOwnProperty(prevKey)) {
+	        if (pendingKeys.length) {
+	          nextKeysPending[prevKey] = pendingKeys;
+	          pendingKeys = [];
+	        }
+	      } else {
+	        pendingKeys.push(prevKey);
+	      }
+	    }
+
+	    var i;
+	    var childMapping = {};
+	    for (var nextKey in next) {
+	      if (nextKeysPending.hasOwnProperty(nextKey)) {
+	        for (i = 0; i < nextKeysPending[nextKey].length; i++) {
+	          var pendingNextKey = nextKeysPending[nextKey][i];
+	          childMapping[nextKeysPending[nextKey][i]] = getValueForKey(pendingNextKey);
+	        }
+	      }
+	      childMapping[nextKey] = getValueForKey(nextKey);
+	    }
+
+	    // Finally, add the keys which didn't appear before any key in `next`
+	    for (i = 0; i < pendingKeys.length; i++) {
+	      childMapping[pendingKeys[i]] = getValueForKey(pendingKeys[i]);
+	    }
+
+	    return childMapping;
+	  }
+	};
+
+	module.exports = ReactTransitionChildMapping;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 261 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule ReactCSSTransitionGroupChild
+	 */
+
+	'use strict';
+
+	var React = __webpack_require__(2);
+	var ReactDOM = __webpack_require__(35);
+
+	var CSSCore = __webpack_require__(262);
+	var ReactTransitionEvents = __webpack_require__(263);
+
+	var onlyChild = __webpack_require__(33);
+
+	var TICK = 17;
+
+	var ReactCSSTransitionGroupChild = React.createClass({
+	  displayName: 'ReactCSSTransitionGroupChild',
+
+	  propTypes: {
+	    name: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.shape({
+	      enter: React.PropTypes.string,
+	      leave: React.PropTypes.string,
+	      active: React.PropTypes.string
+	    }), React.PropTypes.shape({
+	      enter: React.PropTypes.string,
+	      enterActive: React.PropTypes.string,
+	      leave: React.PropTypes.string,
+	      leaveActive: React.PropTypes.string,
+	      appear: React.PropTypes.string,
+	      appearActive: React.PropTypes.string
+	    })]).isRequired,
+
+	    // Once we require timeouts to be specified, we can remove the
+	    // boolean flags (appear etc.) and just accept a number
+	    // or a bool for the timeout flags (appearTimeout etc.)
+	    appear: React.PropTypes.bool,
+	    enter: React.PropTypes.bool,
+	    leave: React.PropTypes.bool,
+	    appearTimeout: React.PropTypes.number,
+	    enterTimeout: React.PropTypes.number,
+	    leaveTimeout: React.PropTypes.number
+	  },
+
+	  transition: function (animationType, finishCallback, userSpecifiedDelay) {
+	    var node = ReactDOM.findDOMNode(this);
+
+	    if (!node) {
+	      if (finishCallback) {
+	        finishCallback();
+	      }
+	      return;
+	    }
+
+	    var className = this.props.name[animationType] || this.props.name + '-' + animationType;
+	    var activeClassName = this.props.name[animationType + 'Active'] || className + '-active';
+	    var timeout = null;
+
+	    var endListener = function (e) {
+	      if (e && e.target !== node) {
+	        return;
+	      }
+
+	      clearTimeout(timeout);
+
+	      CSSCore.removeClass(node, className);
+	      CSSCore.removeClass(node, activeClassName);
+
+	      ReactTransitionEvents.removeEndEventListener(node, endListener);
+
+	      // Usually this optional callback is used for informing an owner of
+	      // a leave animation and telling it to remove the child.
+	      if (finishCallback) {
+	        finishCallback();
+	      }
+	    };
+
+	    CSSCore.addClass(node, className);
+
+	    // Need to do this to actually trigger a transition.
+	    this.queueClassAndNode(activeClassName, node);
+
+	    // If the user specified a timeout delay.
+	    if (userSpecifiedDelay) {
+	      // Clean-up the animation after the specified delay
+	      timeout = setTimeout(endListener, userSpecifiedDelay);
+	      this.transitionTimeouts.push(timeout);
+	    } else {
+	      // DEPRECATED: this listener will be removed in a future version of react
+	      ReactTransitionEvents.addEndEventListener(node, endListener);
+	    }
+	  },
+
+	  queueClassAndNode: function (className, node) {
+	    this.classNameAndNodeQueue.push({
+	      className: className,
+	      node: node
+	    });
+
+	    if (!this.timeout) {
+	      this.timeout = setTimeout(this.flushClassNameAndNodeQueue, TICK);
+	    }
+	  },
+
+	  flushClassNameAndNodeQueue: function () {
+	    if (this.isMounted()) {
+	      this.classNameAndNodeQueue.forEach(function (obj) {
+	        CSSCore.addClass(obj.node, obj.className);
+	      });
+	    }
+	    this.classNameAndNodeQueue.length = 0;
+	    this.timeout = null;
+	  },
+
+	  componentWillMount: function () {
+	    this.classNameAndNodeQueue = [];
+	    this.transitionTimeouts = [];
+	  },
+
+	  componentWillUnmount: function () {
+	    if (this.timeout) {
+	      clearTimeout(this.timeout);
+	    }
+	    this.transitionTimeouts.forEach(function (timeout) {
+	      clearTimeout(timeout);
+	    });
+
+	    this.classNameAndNodeQueue.length = 0;
+	  },
+
+	  componentWillAppear: function (done) {
+	    if (this.props.appear) {
+	      this.transition('appear', done, this.props.appearTimeout);
+	    } else {
+	      done();
+	    }
+	  },
+
+	  componentWillEnter: function (done) {
+	    if (this.props.enter) {
+	      this.transition('enter', done, this.props.enterTimeout);
+	    } else {
+	      done();
+	    }
+	  },
+
+	  componentWillLeave: function (done) {
+	    if (this.props.leave) {
+	      this.transition('leave', done, this.props.leaveTimeout);
+	    } else {
+	      done();
+	    }
+	  },
+
+	  render: function () {
+	    return onlyChild(this.props.children);
+	  }
+	});
+
+	module.exports = ReactCSSTransitionGroupChild;
+
+/***/ },
+/* 262 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @typechecks
+	 */
+
+	var invariant = __webpack_require__(8);
+
+	/**
+	 * The CSSCore module specifies the API (and implements most of the methods)
+	 * that should be used when dealing with the display of elements (via their
+	 * CSS classes and visibility on screen. It is an API focused on mutating the
+	 * display and not reading it as no logical state should be encoded in the
+	 * display of elements.
+	 */
+
+	/* Slow implementation for browsers that don't natively support .matches() */
+	function matchesSelector_SLOW(element, selector) {
+	  var root = element;
+	  while (root.parentNode) {
+	    root = root.parentNode;
+	  }
+
+	  var all = root.querySelectorAll(selector);
+	  return Array.prototype.indexOf.call(all, element) !== -1;
+	}
+
+	var CSSCore = {
+
+	  /**
+	   * Adds the class passed in to the element if it doesn't already have it.
+	   *
+	   * @param {DOMElement} element the element to set the class on
+	   * @param {string} className the CSS className
+	   * @return {DOMElement} the element passed in
+	   */
+	  addClass: function addClass(element, className) {
+	    !!/\s/.test(className) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'CSSCore.addClass takes only a single class name. "%s" contains ' + 'multiple classes.', className) : invariant(false) : void 0;
+
+	    if (className) {
+	      if (element.classList) {
+	        element.classList.add(className);
+	      } else if (!CSSCore.hasClass(element, className)) {
+	        element.className = element.className + ' ' + className;
+	      }
+	    }
+	    return element;
+	  },
+
+	  /**
+	   * Removes the class passed in from the element
+	   *
+	   * @param {DOMElement} element the element to set the class on
+	   * @param {string} className the CSS className
+	   * @return {DOMElement} the element passed in
+	   */
+	  removeClass: function removeClass(element, className) {
+	    !!/\s/.test(className) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'CSSCore.removeClass takes only a single class name. "%s" contains ' + 'multiple classes.', className) : invariant(false) : void 0;
+
+	    if (className) {
+	      if (element.classList) {
+	        element.classList.remove(className);
+	      } else if (CSSCore.hasClass(element, className)) {
+	        element.className = element.className.replace(new RegExp('(^|\\s)' + className + '(?:\\s|$)', 'g'), '$1').replace(/\s+/g, ' ') // multiple spaces to one
+	        .replace(/^\s*|\s*$/g, ''); // trim the ends
+	      }
+	    }
+	    return element;
+	  },
+
+	  /**
+	   * Helper to add or remove a class from an element based on a condition.
+	   *
+	   * @param {DOMElement} element the element to set the class on
+	   * @param {string} className the CSS className
+	   * @param {*} bool condition to whether to add or remove the class
+	   * @return {DOMElement} the element passed in
+	   */
+	  conditionClass: function conditionClass(element, className, bool) {
+	    return (bool ? CSSCore.addClass : CSSCore.removeClass)(element, className);
+	  },
+
+	  /**
+	   * Tests whether the element has the class specified.
+	   *
+	   * @param {DOMNode|DOMWindow} element the element to check the class on
+	   * @param {string} className the CSS className
+	   * @return {boolean} true if the element has the class, false if not
+	   */
+	  hasClass: function hasClass(element, className) {
+	    !!/\s/.test(className) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'CSS.hasClass takes only a single class name.') : invariant(false) : void 0;
+	    if (element.classList) {
+	      return !!className && element.classList.contains(className);
+	    }
+	    return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
+	  },
+
+	  /**
+	   * Tests whether the element matches the selector specified
+	   *
+	   * @param {DOMNode|DOMWindow} element the element that we are querying
+	   * @param {string} selector the CSS selector
+	   * @return {boolean} true if the element matches the selector, false if not
+	   */
+	  matchesSelector: function matchesSelector(element, selector) {
+	    var matchesImpl = element.matches || element.webkitMatchesSelector || element.mozMatchesSelector || element.msMatchesSelector || function (s) {
+	      return matchesSelector_SLOW(element, s);
+	    };
+	    return matchesImpl.call(element, selector);
+	  }
+
+	};
+
+	module.exports = CSSCore;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 263 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule ReactTransitionEvents
+	 */
+
+	'use strict';
+
+	var ExecutionEnvironment = __webpack_require__(49);
+
+	var getVendorPrefixedEventName = __webpack_require__(109);
+
+	var endEvents = [];
+
+	function detectEvents() {
+	  var animEnd = getVendorPrefixedEventName('animationend');
+	  var transEnd = getVendorPrefixedEventName('transitionend');
+
+	  if (animEnd) {
+	    endEvents.push(animEnd);
+	  }
+
+	  if (transEnd) {
+	    endEvents.push(transEnd);
+	  }
+	}
+
+	if (ExecutionEnvironment.canUseDOM) {
+	  detectEvents();
+	}
+
+	// We use the raw {add|remove}EventListener() call because EventListener
+	// does not know how to remove event listeners and we really should
+	// clean up. Also, these events are not triggered in older browsers
+	// so we should be A-OK here.
+
+	function addEventListener(node, eventName, eventListener) {
+	  node.addEventListener(eventName, eventListener, false);
+	}
+
+	function removeEventListener(node, eventName, eventListener) {
+	  node.removeEventListener(eventName, eventListener, false);
+	}
+
+	var ReactTransitionEvents = {
+	  addEndEventListener: function (node, eventListener) {
+	    if (endEvents.length === 0) {
+	      // If CSS transitions are not supported, trigger an "end animation"
+	      // event immediately.
+	      window.setTimeout(eventListener, 0);
+	      return;
+	    }
+	    endEvents.forEach(function (endEvent) {
+	      addEventListener(node, endEvent, eventListener);
+	    });
+	  },
+
+	  removeEndEventListener: function (node, eventListener) {
+	    if (endEvents.length === 0) {
+	      return;
+	    }
+	    endEvents.forEach(function (endEvent) {
+	      removeEventListener(node, endEvent, eventListener);
+	    });
+	  }
+	};
+
+	module.exports = ReactTransitionEvents;
+
+/***/ },
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//     Underscore.js 1.8.3
@@ -30437,14 +31547,14 @@
 
 
 /***/ },
-/* 255 */
+/* 265 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 256 */,
-/* 257 */
+/* 266 */,
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30461,7 +31571,11 @@
 
 	var _reactRouter = __webpack_require__(172);
 
-	__webpack_require__(258);
+	var _superagent = __webpack_require__(246);
+
+	var _superagent2 = _interopRequireDefault(_superagent);
+
+	__webpack_require__(268);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30481,8 +31595,22 @@
 	    }
 
 	    _createClass(Post, [{
+	        key: 'removePost',
+	        value: function removePost() {
+	            var id = this.props.id;
+	            this.props.handleDelete(id);
+	        }
+	    }, {
+	        key: 'openEdit',
+	        value: function openEdit() {
+	            _reactRouter.browserHistory.push('/edit/' + this.props.id);
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var style = {
+	                background: 'url(' + this.props.mainBg + ')'
+	            };
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'postWrapper', style: style },
@@ -30493,29 +31621,33 @@
 	                        'div',
 	                        { className: 'postTitle' },
 	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'postTitleText' },
-	                            this.props.title
+	                            _reactRouter.Link,
+	                            { to: '/edit/' + this.props.id, className: 'link' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'postTitleText' },
+	                                this.props.title
+	                            )
 	                        ),
 	                        _react2.default.createElement(
 	                            'button',
-	                            { className: 'postDeleteButton' },
+	                            { className: 'postDeleteButton', onClick: this.removePost.bind(this) },
 	                            'X'
 	                        ),
 	                        _react2.default.createElement(
-	                            'button',
-	                            { className: 'postEditButton' },
-	                            _react2.default.createElement(
-	                                _reactRouter.Link,
-	                                { to: '/posts/' + this.props.key },
-	                                'Edit'
-	                            )
+	                            _reactRouter.Link,
+	                            { to: '/edit/' + this.props.id },
+	                            'edit'
 	                        )
 	                    ),
 	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'postContext' },
-	                        this.props.mainTxt
+	                        _reactRouter.Link,
+	                        { to: '/posts/' + this.props.id, className: 'link' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'postContext' },
+	                            this.props.mainTxt
+	                        )
 	                    )
 	                )
 	            );
@@ -30528,14 +31660,14 @@
 	exports.default = Post;
 
 /***/ },
-/* 258 */
+/* 268 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 259 */,
-/* 260 */
+/* 269 */,
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30550,11 +31682,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _superagent = __webpack_require__(249);
+	var _superagent = __webpack_require__(246);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	__webpack_require__(261);
+	var _reactRouter = __webpack_require__(172);
+
+	__webpack_require__(271);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30574,6 +31708,19 @@
 	    }
 
 	    _createClass(NewPostPageContainer, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var _this2 = this;
+
+	            var url = '/edit/' + this.props.params.id;
+	            _superagent2.default.get(url).then(function (response) {
+	                _this2.setState({
+	                    title: response.body.title,
+	                    mainTxt: response.body.mainTxt
+	                });
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(NewPostPage, { onPostAdd: this.savePost.bind(this) });
@@ -30583,7 +31730,7 @@
 	        value: function savePost(data) {
 	            var url = '/home';
 	            _superagent2.default.post(url).send(data).end(function () {
-	                alert('yop!');
+	                _reactRouter.browserHistory.push('home');
 	            });
 	        }
 	    }]);
@@ -30599,13 +31746,14 @@
 	    function NewPostPage() {
 	        _classCallCheck(this, NewPostPage);
 
-	        var _this2 = _possibleConstructorReturn(this, (NewPostPage.__proto__ || Object.getPrototypeOf(NewPostPage)).call(this));
+	        var _this3 = _possibleConstructorReturn(this, (NewPostPage.__proto__ || Object.getPrototypeOf(NewPostPage)).call(this));
 
-	        _this2.state = { title: '',
+	        _this3.state = {
+	            title: '',
 	            mainTxt: '',
 	            mainBg: ''
 	        };
-	        return _this2;
+	        return _this3;
 	    }
 
 	    _createClass(NewPostPage, [{
@@ -30705,20 +31853,20 @@
 	}(_react2.default.Component);
 
 /***/ },
-/* 261 */
+/* 271 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 262 */,
-/* 263 */
+/* 272 */,
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -30727,15 +31875,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _superagent = __webpack_require__(249);
+	var _superagent = __webpack_require__(246);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _underscore = __webpack_require__(254);
-
-	var _underscore2 = _interopRequireDefault(_underscore);
-
-	var _PostPageElement = __webpack_require__(264);
+	var _PostPageElement = __webpack_require__(274);
 
 	var _PostPageElement2 = _interopRequireDefault(_PostPageElement);
 
@@ -30750,54 +31894,57 @@
 	// import OptSect from "./OptSect";
 
 	var PostPage = function (_React$Component) {
-	    _inherits(PostPage, _React$Component);
+	  _inherits(PostPage, _React$Component);
 
-	    function PostPage() {
-	        _classCallCheck(this, PostPage);
+	  function PostPage() {
+	    _classCallCheck(this, PostPage);
 
-	        var _this = _possibleConstructorReturn(this, (PostPage.__proto__ || Object.getPrototypeOf(PostPage)).call(this));
+	    var _this = _possibleConstructorReturn(this, (PostPage.__proto__ || Object.getPrototypeOf(PostPage)).call(this));
 
-	        _this.state = {};
-	        return _this;
+	    _this.state = {
+	      post: ''
+	    };
+	    return _this;
+	  }
+
+	  _createClass(PostPage, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var _this2 = this;
+
+	      var url = '/posts/' + this.props.params.id;
+	      _superagent2.default.get(url).then(function (response) {
+	        _this2.setState({
+	          post: response.body
+	        });
+	      });
 	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var post = this.state.post;
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_PostPageElement2.default, {
+	          key: post._id,
+	          id: post._id,
+	          title: post.title,
+	          mainTxt: post.mainTxt,
+	          mainBg: post.mainBg
+	        }),
+	        ';'
+	      );
+	    }
+	  }]);
 
-	    _createClass(PostPage, [{
-	        key: 'componentWillMount',
-	        value: function componentWillMount() {
-	            var _this2 = this;
-
-	            var url = '/posts/57c6d6252a3c3f109c915a78';
-	            _superagent2.default.get(url).then(function (response) {
-	                _this2.setState({
-	                    post: response.body
-	                });
-	            });
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var postData = this.state.post;
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(_PostPageElement2.default, {
-	                    key: postData.id,
-	                    title: postData.title,
-	                    mainTxt: postData.mainTxt,
-	                    mainBg: postData.mainBg
-	                }),
-	                ';'
-	            );
-	        }
-	    }]);
-
-	    return PostPage;
+	  return PostPage;
 	}(_react2.default.Component);
 
 	exports.default = PostPage;
 
 /***/ },
-/* 264 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -30812,7 +31959,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	__webpack_require__(265);
+	__webpack_require__(275);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30834,12 +31981,15 @@
 	  _createClass(PostPageElement, [{
 	    key: "render",
 	    value: function render() {
+	      var style = {
+	        backgroundImage: "url(" + this.props.mainBg + ")"
+	      };
 	      return _react2.default.createElement(
 	        "div",
 	        { className: "pageWrapper" },
 	        _react2.default.createElement(
 	          "section",
-	          { className: "module parallax parallax-1", style: { background: this.props.mainBg } },
+	          { className: "module parallax parallax-1", style: style },
 	          _react2.default.createElement(
 	            "div",
 	            { className: "container" },
@@ -30877,15 +32027,15 @@
 	exports.default = PostPageElement;
 
 /***/ },
-/* 265 */
+/* 275 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 266 */,
-/* 267 */,
-/* 268 */
+/* 276 */,
+/* 277 */,
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30900,7 +32050,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ProfilePageTemplate = __webpack_require__(269);
+	var _ProfilePageTemplate = __webpack_require__(279);
 
 	var _ProfilePageTemplate2 = _interopRequireDefault(_ProfilePageTemplate);
 
@@ -30953,7 +32103,7 @@
 	exports.default = ProfilePage;
 
 /***/ },
-/* 269 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30968,7 +32118,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	__webpack_require__(270);
+	__webpack_require__(280);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31022,7 +32172,7 @@
 	exports.default = ProfilePage;
 
 /***/ },
-/* 270 */
+/* 280 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

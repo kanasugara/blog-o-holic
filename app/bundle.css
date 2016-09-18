@@ -28,7 +28,123 @@ If cube is next to (after containers closing tag) the container:
 #container:hover + #cube { background-color: yellow; }
 
 If the cube is somewhere inside the container:
-#container:hover #cube { background-color: yellow; }*/header{
+#container:hover #cube { background-color: yellow; }*/input{
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#inputContext{
+    min-height: 200px;
+    word-wrap: break-word;
+}
+.PostEditorWrapper{
+	width: 80%;
+	margin: 0 auto;
+	background-color: rgba(189, 182, 182, 0.7);
+}
+.PostEditor{
+	margin: 0 auto;
+	width: 95%;
+}
+.PostEditor p{
+	text-indent: 50px;
+    font-size: 30px;
+    font-family: logo2;
+    color: black;
+    border-top: 2px solid black;
+}
+.PostEditor p:first-child{
+	border: none;
+}
+.PostEditor input{
+	margin-bottom: 5px;
+	font-family: logo2;
+}
+.PostEditorTitle{
+	height: 35px;
+	font-size: 20px;
+	text-indent: 25px;
+}
+.PostEditorMainBgWrapper{
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    cursor: pointer;
+    height: 26px;
+    overflow: hidden;
+    padding: 2px;
+    position: relative;
+    text-align: left;
+    vertical-align: middle;
+}
+#PostEditorMainBgLabel { 
+	background-color: #FFFFFF;
+	float: left;
+	height: 22px;
+	line-height: 22px;
+	overflow: hidden;
+	padding: 2px;
+	text-align: left;
+	vertical-align: middle;
+	width:160px;
+}
+.PostEditorMainBgBrowse { 
+    background-color: #A2A3A3;
+    border: 1px solid #939494;
+    border-radius: 2px;
+    color: #FFFFFF;
+    float: right;
+    font-size: 16px;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    padding: 2px 6px;
+    text-align: center;
+    vertical-align: middle;
+    width: 50px;
+}
+ .PostEditorMainBg{
+ 	position:absolute; 
+    top:0; 
+    left:0; 
+    width:100%; 
+    -moz-opacity: 0; 
+    filter: alpha(opacity=0); 
+    opacity: 0; 
+    font-size: 150px; 
+    height: 30px; 
+    z-index:20;
+}
+.PostEditorMainTxt{
+	width: 100%;
+	margin-bottom: 5px;
+	resize: none;
+	outline: none;
+	overflow: hidden;
+}
+.footerNewPage{
+	padding-bottom: 5px;
+    position: relative;
+    height: 35px;
+}
+.PostEditorSaveButton{
+	margin-top: 0px;
+    width: 50px;
+    font-size: 14px;
+    font-family: logo2;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #5bc0de;
+    border-color: #46b8da;   
+    opacity: 1;
+    cursor: pointer;
+    float: right;
+}header{
     height: 60px;
     background-color: rgba(189, 182, 182, 0.7);
     border-bottom: 2px solid black;
@@ -75,7 +191,15 @@ header ul a:hover{
     width: 80%;
     margin: 0 auto;
     overflow: hidden;
-}.postWrapper{
+}
+.mainPageTransitionGroup-enter{
+	opacity: 0.1;
+}
+.mainPageTransitionGroup-enter-active{
+	opacity: 1;
+	transition: 300ms ease-in-out all;
+}
+.postWrapper{
     height: 350px;
     border-bottom:2px solid black;
     background-size: 100% auto;
@@ -84,6 +208,7 @@ header ul a:hover{
     margin-top: 35px;
     overflow: hidden;
 }
+
 .postWrapper:hover > .postHover {
     background-color: rgba(111, 111, 111, 0.35);
     bottom: 0;
@@ -107,6 +232,10 @@ header ul a:hover{
     height: 50px;
     line-height: 50px;
     position: relative;
+}
+.link{
+    color: black; 
+    text-decoration: none;
 }
 .postTitleText{
     width: 90%;
@@ -161,7 +290,6 @@ button{
     line-height: 1.55;
     padding-top: 145px;
     text-indent: 50px;
-    
 }
 p{
     font-family: logo;
@@ -289,6 +417,7 @@ input{
 .container {
   max-width: 960px;
   margin: 0 auto;
+  
 }
 /* ============================================================
   SECTIONS
@@ -318,11 +447,19 @@ section.module.parallax {
   background-attachment: fixed;
   background-size: cover;
 }
+section.module.parallax div{
+  display: table;
+  height: 100%;
+}
+
 section.module.parallax h1 {
   color: rgba(255, 255, 255, 0.8);
   margin: 0;
   font-size: 48px;
-  line-height: 600px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  line-height: normal;
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
