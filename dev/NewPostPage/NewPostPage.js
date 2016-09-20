@@ -15,7 +15,7 @@ export default class NewPostPageContainer extends React.Component {
         })
     }
     render() {
-        return <NewPostPage onPostAdd={this.savePost.bind(this)} />
+        return <NewPostPage onPostAdd = { this.savePost.bind(this) } />
     }
     savePost(data){
         const url = `/home`;
@@ -30,11 +30,11 @@ export default class NewPostPageContainer extends React.Component {
 class NewPostPage extends React.Component{
     constructor() {
         super();
-            this.state = {  
-                title: '' ,
-                mainTxt: '',
-                mainBg: '' 
-            };
+        this.state = {  
+            title: '' ,
+            mainTxt: '',
+            mainBg: '' 
+        };
     }
     handleTitleChange(event) {
         this.setState({ title: event.target.value });
@@ -42,16 +42,18 @@ class NewPostPage extends React.Component{
     handleTextChange(event) {
         this.setState({ mainTxt: event.target.value });
     }
+    handleMainBgChange(event) {
+        this.setState({ mainBg: event.target.value });
+    }
     handlePostAdd() {
         const newPost = {
             title: this.state.title,
             mainTxt: this.state.mainTxt,
-            mainBg: '../img/01.jpg'
+            mainBg: this.state.mainBg
         };
 
         this.props.onPostAdd(newPost);
     }
-   
     render() {
         return ( 
             <div className='PostEditorWrapper'>
@@ -65,16 +67,13 @@ class NewPostPage extends React.Component{
                         onChange={this.handleTitleChange.bind(this)}
                     />
                     <p>Main Background:</p>
-                    <div className='PostEditorMainBgWrapper'>
-                        <div id="PostEditorMainBgLabel"></div>
-                        <div className='PostEditorMainBgBrowse'>Browse</div>
-                        <input  type='file'
-                                className='PostEditorMainBg'
-                                placeholder='Browse main Background'
-                                // onChange={this.handleMainBgChange(self, mainBg)}
-                                onChange={this.handleMainBgChange} 
-                        />
-                    </div>
+                    <input
+                        type='text'
+                        className='PostEditorMainBg'
+                        placeholder='Enter Main Image URL'
+                        value={this.state.mainBg}
+                        onChange={this.handleMainBgChange.bind(this)}
+                    />
                     <p>Main Text:</p>
                     <textarea
                         placeholder='Enter text here'

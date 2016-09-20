@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+
 import './fonts.css'
 import './styles.css'
 
@@ -16,7 +17,10 @@ class Layout extends React.Component {
 		return( 
 			<div>
 				<Header />
-				 {this.props.children}
+					<div className = 'contentGoHere' >
+						{this.props.children}
+					</div>
+				 
 				{/* add footer here   //// comment in JSX style */}
 			</div>
 		);

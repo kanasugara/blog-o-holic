@@ -1,12 +1,14 @@
-#mainContainer{
-    width: 80%;
-    margin: 0 auto;
-    overflow: hidden;
-}
 .mainPageTransitionGroup-enter{
 	opacity: 0.1;
 }
 .mainPageTransitionGroup-enter-active{
 	opacity: 1;
+	transition: 300ms ease-in-out all;
+}
+.mainPageTransitionGroup-leave{
+	opacity: 1;
+}
+.mainPageTransitionGroup-leave-active{
+	opacity: 0.1;
 	transition: 300ms ease-in-out all;
 }

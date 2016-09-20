@@ -14,11 +14,9 @@ export function listPosts(data) {
 export function listOnePost(id) {
     return Post.findById(id);
 }
-
 export function editOnePost(id) {
     return Post.findById(id);
 }
-
 export function saveEditedPost(newData) {
     const editedPost = {         
         title: newData.title,
@@ -28,13 +26,11 @@ export function saveEditedPost(newData) {
     };
     return Post.findOneAndUpdate({ _id : newData.id }, { $set: editedPost });
 }
-
 export function createPost(data) {
     const post = new Post({
         title: data.title,
         mainBg: data.mainBg,
         mainTxt: data.mainTxt,
-        // optSection: optionalSections,
         createdAt: new Date()
     });
     return post.save();

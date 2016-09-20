@@ -25,7 +25,6 @@ app.get('/', (req, res) => {
     res.render('app/index.html');
 });
 
-
 // RESTful api handlers
 app.get('/home', (req, res) => {
     db.listPosts().then(data => res.send(data));

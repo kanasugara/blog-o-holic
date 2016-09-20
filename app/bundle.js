@@ -60,29 +60,29 @@
 
 	__webpack_require__(235);
 
-	__webpack_require__(243);
+	__webpack_require__(240);
 
-	var _EditPostPage = __webpack_require__(245);
+	var _EditPostPage = __webpack_require__(242);
 
 	var _EditPostPage2 = _interopRequireDefault(_EditPostPage);
 
-	var _Header = __webpack_require__(253);
+	var _Header = __webpack_require__(248);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _mainContainer = __webpack_require__(256);
+	var _mainContainer = __webpack_require__(251);
 
 	var _mainContainer2 = _interopRequireDefault(_mainContainer);
 
-	var _NewPostPage = __webpack_require__(270);
+	var _NewPostPage = __webpack_require__(265);
 
 	var _NewPostPage2 = _interopRequireDefault(_NewPostPage);
 
-	var _postPage = __webpack_require__(273);
+	var _postPage = __webpack_require__(268);
 
 	var _postPage2 = _interopRequireDefault(_postPage);
 
-	var _ProfilePage = __webpack_require__(278);
+	var _ProfilePage = __webpack_require__(272);
 
 	var _ProfilePage2 = _interopRequireDefault(_ProfilePage);
 
@@ -110,7 +110,11 @@
 					'div',
 					null,
 					_react2.default.createElement(_Header2.default, null),
-					this.props.children
+					_react2.default.createElement(
+						'div',
+						{ className: 'contentGoHere' },
+						this.props.children
+					)
 				);
 			}
 		}]);
@@ -253,40 +257,25 @@
 	var cachedSetTimeout;
 	var cachedClearTimeout;
 
-	function defaultSetTimout() {
-	    throw new Error('setTimeout has not been defined');
-	}
-	function defaultClearTimeout () {
-	    throw new Error('clearTimeout has not been defined');
-	}
 	(function () {
 	    try {
-	        if (typeof setTimeout === 'function') {
-	            cachedSetTimeout = setTimeout;
-	        } else {
-	            cachedSetTimeout = defaultSetTimout;
-	        }
+	        cachedSetTimeout = setTimeout;
 	    } catch (e) {
-	        cachedSetTimeout = defaultSetTimout;
+	        cachedSetTimeout = function () {
+	            throw new Error('setTimeout is not defined');
+	        }
 	    }
 	    try {
-	        if (typeof clearTimeout === 'function') {
-	            cachedClearTimeout = clearTimeout;
-	        } else {
-	            cachedClearTimeout = defaultClearTimeout;
-	        }
+	        cachedClearTimeout = clearTimeout;
 	    } catch (e) {
-	        cachedClearTimeout = defaultClearTimeout;
+	        cachedClearTimeout = function () {
+	            throw new Error('clearTimeout is not defined');
+	        }
 	    }
 	} ())
 	function runTimeout(fun) {
 	    if (cachedSetTimeout === setTimeout) {
 	        //normal enviroments in sane situations
-	        return setTimeout(fun, 0);
-	    }
-	    // if setTimeout wasn't available but was latter defined
-	    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-	        cachedSetTimeout = setTimeout;
 	        return setTimeout(fun, 0);
 	    }
 	    try {
@@ -307,11 +296,6 @@
 	function runClearTimeout(marker) {
 	    if (cachedClearTimeout === clearTimeout) {
 	        //normal enviroments in sane situations
-	        return clearTimeout(marker);
-	    }
-	    // if clearTimeout wasn't available but was latter defined
-	    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-	        cachedClearTimeout = clearTimeout;
 	        return clearTimeout(marker);
 	    }
 	    try {
@@ -24392,7 +24376,7 @@
 	          if (error) {
 	            listener(error);
 	          } else if (redirectLocation) {
-	            history.replace(redirectLocation);
+	            history.transitionTo(redirectLocation);
 	          } else if (nextState) {
 	            listener(null, nextState);
 	          } else {
@@ -25560,7 +25544,7 @@
 	  },
 
 	  propTypes: {
-	    to: oneOfType([string, object]),
+	    to: oneOfType([string, object]).isRequired,
 	    query: object,
 	    hash: string,
 	    state: object,
@@ -25621,11 +25605,6 @@
 
 
 	    if (router) {
-	      // If user does not specify a `to` prop, return an empty anchor tag.
-	      if (to == null) {
-	        return _react2.default.createElement('a', props);
-	      }
-
 	      var location = createLocationDescriptor(to, { query: query, hash: hash, state: state });
 	      props.href = router.createHref(location);
 
@@ -27172,17 +27151,14 @@
 /* 237 */,
 /* 238 */,
 /* 239 */,
-/* 240 */,
-/* 241 */,
-/* 242 */,
-/* 243 */
+/* 240 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 244 */,
-/* 245 */
+/* 241 */,
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27197,13 +27173,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _superagent = __webpack_require__(246);
+	var _superagent = __webpack_require__(243);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
 	var _reactRouter = __webpack_require__(172);
-
-	__webpack_require__(251);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27389,7 +27363,7 @@
 	}(_react2.default.Component);
 
 /***/ },
-/* 246 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -27406,9 +27380,9 @@
 	  root = this;
 	}
 
-	var Emitter = __webpack_require__(247);
-	var requestBase = __webpack_require__(248);
-	var isObject = __webpack_require__(249);
+	var Emitter = __webpack_require__(244);
+	var requestBase = __webpack_require__(245);
+	var isObject = __webpack_require__(246);
 
 	/**
 	 * Noop.
@@ -27420,7 +27394,7 @@
 	 * Expose `request`.
 	 */
 
-	var request = module.exports = __webpack_require__(250).bind(null, Request);
+	var request = module.exports = __webpack_require__(247).bind(null, Request);
 
 	/**
 	 * Determine XHR.
@@ -28371,7 +28345,7 @@
 
 
 /***/ },
-/* 247 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -28540,13 +28514,13 @@
 
 
 /***/ },
-/* 248 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(249);
+	var isObject = __webpack_require__(246);
 
 	/**
 	 * Clear previous timeout.
@@ -28893,7 +28867,7 @@
 
 
 /***/ },
-/* 249 */
+/* 246 */
 /***/ function(module, exports) {
 
 	/**
@@ -28912,7 +28886,7 @@
 
 
 /***/ },
-/* 250 */
+/* 247 */
 /***/ function(module, exports) {
 
 	// The node and browser modules expose versions of this with the
@@ -28950,14 +28924,7 @@
 
 
 /***/ },
-/* 251 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 252 */,
-/* 253 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28974,7 +28941,7 @@
 
 	var _reactRouter = __webpack_require__(172);
 
-	__webpack_require__(254);
+	__webpack_require__(249);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29033,14 +29000,14 @@
 	exports.default = Header;
 
 /***/ },
-/* 254 */
+/* 249 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 255 */,
-/* 256 */
+/* 250 */,
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29055,21 +29022,21 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _superagent = __webpack_require__(246);
+	var _superagent = __webpack_require__(243);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(257);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(252);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	var _underscore = __webpack_require__(264);
+	var _underscore = __webpack_require__(259);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
-	__webpack_require__(265);
+	__webpack_require__(260);
 
-	var _PostMin = __webpack_require__(267);
+	var _PostMin = __webpack_require__(262);
 
 	var _PostMin2 = _interopRequireDefault(_PostMin);
 
@@ -29138,7 +29105,6 @@
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'mainContainer' },
-	                _react2.default.createElement('newPost', null),
 	                _react2.default.createElement(
 	                    _reactAddonsCssTransitionGroup2.default,
 	                    {
@@ -29157,13 +29123,13 @@
 	exports.default = MainContainer;
 
 /***/ },
-/* 257 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(258);
+	module.exports = __webpack_require__(253);
 
 /***/ },
-/* 258 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -29183,8 +29149,8 @@
 
 	var React = __webpack_require__(2);
 
-	var ReactTransitionGroup = __webpack_require__(259);
-	var ReactCSSTransitionGroupChild = __webpack_require__(261);
+	var ReactTransitionGroup = __webpack_require__(254);
+	var ReactCSSTransitionGroupChild = __webpack_require__(256);
 
 	function createTransitionTimeoutPropValidator(transitionType) {
 	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -29255,7 +29221,7 @@
 	module.exports = ReactCSSTransitionGroup;
 
 /***/ },
-/* 259 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -29275,7 +29241,7 @@
 
 	var React = __webpack_require__(2);
 	var ReactInstanceMap = __webpack_require__(119);
-	var ReactTransitionChildMapping = __webpack_require__(260);
+	var ReactTransitionChildMapping = __webpack_require__(255);
 
 	var emptyFunction = __webpack_require__(12);
 
@@ -29507,7 +29473,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 260 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -29616,7 +29582,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 261 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -29635,8 +29601,8 @@
 	var React = __webpack_require__(2);
 	var ReactDOM = __webpack_require__(35);
 
-	var CSSCore = __webpack_require__(262);
-	var ReactTransitionEvents = __webpack_require__(263);
+	var CSSCore = __webpack_require__(257);
+	var ReactTransitionEvents = __webpack_require__(258);
 
 	var onlyChild = __webpack_require__(33);
 
@@ -29788,7 +29754,7 @@
 	module.exports = ReactCSSTransitionGroupChild;
 
 /***/ },
-/* 262 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -29915,7 +29881,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 263 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -29993,7 +29959,7 @@
 	module.exports = ReactTransitionEvents;
 
 /***/ },
-/* 264 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//     Underscore.js 1.8.3
@@ -31547,14 +31513,14 @@
 
 
 /***/ },
-/* 265 */
+/* 260 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 266 */,
-/* 267 */
+/* 261 */,
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31571,11 +31537,7 @@
 
 	var _reactRouter = __webpack_require__(172);
 
-	var _superagent = __webpack_require__(246);
-
-	var _superagent2 = _interopRequireDefault(_superagent);
-
-	__webpack_require__(268);
+	__webpack_require__(263);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31601,15 +31563,17 @@
 	            this.props.handleDelete(id);
 	        }
 	    }, {
-	        key: 'openEdit',
-	        value: function openEdit() {
+	        key: 'openEditPage',
+	        value: function openEditPage() {
 	            _reactRouter.browserHistory.push('/edit/' + this.props.id);
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var style = {
-	                background: 'url(' + this.props.mainBg + ')'
+	                background: 'url(' + this.props.mainBg + ')',
+	                backgroundRepeat: 'no-repeat',
+	                backgroundSize: 'cover'
 	            };
 	            return _react2.default.createElement(
 	                'div',
@@ -31622,7 +31586,7 @@
 	                        { className: 'postTitle' },
 	                        _react2.default.createElement(
 	                            _reactRouter.Link,
-	                            { to: '/edit/' + this.props.id, className: 'link' },
+	                            { to: '/posts/' + this.props.id, className: 'link' },
 	                            _react2.default.createElement(
 	                                'div',
 	                                { className: 'postTitleText' },
@@ -31635,9 +31599,9 @@
 	                            'X'
 	                        ),
 	                        _react2.default.createElement(
-	                            _reactRouter.Link,
-	                            { to: '/edit/' + this.props.id },
-	                            'edit'
+	                            'button',
+	                            { className: 'postEditButton', onClick: this.openEditPage.bind(this) },
+	                            'Edit'
 	                        )
 	                    ),
 	                    _react2.default.createElement(
@@ -31660,14 +31624,14 @@
 	exports.default = Post;
 
 /***/ },
-/* 268 */
+/* 263 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 269 */,
-/* 270 */
+/* 264 */,
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31682,13 +31646,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _superagent = __webpack_require__(246);
+	var _superagent = __webpack_require__(243);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
 	var _reactRouter = __webpack_require__(172);
 
-	__webpack_require__(271);
+	__webpack_require__(266);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31767,12 +31731,17 @@
 	            this.setState({ mainTxt: event.target.value });
 	        }
 	    }, {
+	        key: 'handleMainBgChange',
+	        value: function handleMainBgChange(event) {
+	            this.setState({ mainBg: event.target.value });
+	        }
+	    }, {
 	        key: 'handlePostAdd',
 	        value: function handlePostAdd() {
 	            var newPost = {
 	                title: this.state.title,
 	                mainTxt: this.state.mainTxt,
-	                mainBg: '../img/01.jpg'
+	                mainBg: this.state.mainBg
 	            };
 
 	            this.props.onPostAdd(newPost);
@@ -31803,22 +31772,13 @@
 	                        null,
 	                        'Main Background:'
 	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'PostEditorMainBgWrapper' },
-	                        _react2.default.createElement('div', { id: 'PostEditorMainBgLabel' }),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'PostEditorMainBgBrowse' },
-	                            'Browse'
-	                        ),
-	                        _react2.default.createElement('input', { type: 'file',
-	                            className: 'PostEditorMainBg',
-	                            placeholder: 'Browse main Background'
-	                            // onChange={this.handleMainBgChange(self, mainBg)}
-	                            , onChange: this.handleMainBgChange
-	                        })
-	                    ),
+	                    _react2.default.createElement('input', {
+	                        type: 'text',
+	                        className: 'PostEditorMainBg',
+	                        placeholder: 'Enter Main Image URL',
+	                        value: this.state.mainBg,
+	                        onChange: this.handleMainBgChange.bind(this)
+	                    }),
 	                    _react2.default.createElement(
 	                        'p',
 	                        null,
@@ -31853,14 +31813,14 @@
 	}(_react2.default.Component);
 
 /***/ },
-/* 271 */
+/* 266 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 272 */,
-/* 273 */
+/* 267 */,
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31875,11 +31835,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _superagent = __webpack_require__(246);
+	var _superagent = __webpack_require__(243);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _PostPageElement = __webpack_require__(274);
+	var _PostPageElement = __webpack_require__(269);
 
 	var _PostPageElement2 = _interopRequireDefault(_PostPageElement);
 
@@ -31890,8 +31850,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	// import OptSect from "./OptSect";
 
 	var PostPage = function (_React$Component) {
 	  _inherits(PostPage, _React$Component);
@@ -31944,10 +31902,10 @@
 	exports.default = PostPage;
 
 /***/ },
-/* 274 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -31959,7 +31917,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	__webpack_require__(275);
+	__webpack_require__(270);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31979,42 +31937,34 @@
 	  }
 
 	  _createClass(PostPageElement, [{
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	      var style = {
-	        backgroundImage: "url(" + this.props.mainBg + ")"
+	        backgroundImage: 'url(' + this.props.mainBg + ')'
 	      };
 	      return _react2.default.createElement(
-	        "div",
-	        { className: "pageWrapper" },
+	        'div',
+	        { className: 'pageWrapper' },
 	        _react2.default.createElement(
-	          "section",
-	          { className: "module parallax parallax-1", style: style },
+	          'div',
+	          { className: 'mainBackground', style: style },
 	          _react2.default.createElement(
-	            "div",
-	            { className: "container" },
-	            _react2.default.createElement(
-	              "h1",
-	              null,
-	              " ",
-	              this.props.title,
-	              " "
-	            )
+	            'h1',
+	            null,
+	            ' ',
+	            this.props.title,
+	            ' '
 	          )
 	        ),
 	        _react2.default.createElement(
-	          "section",
-	          { className: "module content" },
+	          'div',
+	          { className: 'mainContent' },
 	          _react2.default.createElement(
-	            "div",
-	            { className: "container" },
-	            _react2.default.createElement(
-	              "p",
-	              null,
-	              " ",
-	              this.props.mainTxt,
-	              " "
-	            )
+	            'p',
+	            null,
+	            ' ',
+	            this.props.mainTxt,
+	            ' '
 	          )
 	        )
 	      );
@@ -32027,15 +31977,14 @@
 	exports.default = PostPageElement;
 
 /***/ },
-/* 275 */
+/* 270 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 276 */,
-/* 277 */,
-/* 278 */
+/* 271 */,
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32050,7 +31999,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ProfilePageTemplate = __webpack_require__(279);
+	var _ProfilePageTemplate = __webpack_require__(273);
 
 	var _ProfilePageTemplate2 = _interopRequireDefault(_ProfilePageTemplate);
 
@@ -32103,7 +32052,7 @@
 	exports.default = ProfilePage;
 
 /***/ },
-/* 279 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32118,7 +32067,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	__webpack_require__(280);
+	__webpack_require__(274);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32172,7 +32121,7 @@
 	exports.default = ProfilePage;
 
 /***/ },
-/* 280 */
+/* 274 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

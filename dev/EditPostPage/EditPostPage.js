@@ -2,8 +2,6 @@ import React from 'react';
 import Request from 'superagent';
 import { browserHistory } from 'react-router';
 
-import './EditPostPage.css';
-
 export default class EditPostPageContainer extends React.Component {
     constructor() {
       super();

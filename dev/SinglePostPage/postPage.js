@@ -3,8 +3,6 @@ import Request from 'superagent';
 
 import PostPageElement from './PostPageElement';
 
-// import OptSect from "./OptSect";
-
 export default class PostPage extends React.Component{
     constructor() {
       super();

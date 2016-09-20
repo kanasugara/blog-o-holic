@@ -45,7 +45,6 @@ export default class MainContainer extends React.Component{
         });
         return ( 
             <div id = "mainContainer">
-                <newPost />
                 <ReactCSSTransitionGroup 
                     transitionName="mainPageTransitionGroup" 
                     transitionEnterTimeout={500} 

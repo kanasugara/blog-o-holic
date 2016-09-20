@@ -1,11 +1,12 @@
 .postWrapper{
     height: 350px;
     border-bottom:2px solid black;
-    background-size: 100% auto;
     position: relative;
     transition: 450ms;
     margin-top: 35px;
     overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .postWrapper:hover > .postHover {

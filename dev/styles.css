@@ -3,7 +3,11 @@ body{
     margin:0;
     min-width:700px;
 }
-
+.contentGoHere{
+    margin: 0 auto;
+    overflow: hidden;
+    margin-top: 60px;
+}
 /*     ////////RELATIONS Inside div /////////NICE TO KNOW
 
 If the cube is directly inside the container:
