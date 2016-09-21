@@ -80,16 +80,14 @@ class EditPostPage extends React.Component{
                         value={this.state.title}
                         onChange={this.handleTitleChange.bind(this)}
                     />
-                    <p>Main Background:</p>
-                    <div className='PostEditorMainBgWrapper'>
-                        <div id="PostEditorMainBgLabel"></div>
-                        <div className='PostEditorMainBgBrowse'>Browse</div>
-                        <input  type='file'
-                                className='PostEditorMainBg'
-                                placeholder='Browse main Background'
-                                onChange={this.handleMainBgChange.bind(this)} 
-                        />
-                    </div>
+                   <p>Main Background:</p>
+                    <input
+                        type='text'
+                        className='PostEditorMainBg'
+                        placeholder='Enter Main Image URL'
+                        value={this.state.mainBg}
+                        onChange={this.handleMainBgChange.bind(this)}
+                    />
                     <p>Main Text:</p>
                     <textarea
                         placeholder='Enter text here'
