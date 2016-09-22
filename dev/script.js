@@ -6,6 +6,7 @@ import './fonts.css'
 import './styles.css'
 
 import EditPostPageContainer from './EditPostPage/EditPostPage';
+import Footer from './Layout/Footer';
 import Header from './Layout/Header';
 import MainContainer from './MainPage/mainContainer';
 import NewPostPageContainer from './NewPostPage/NewPostPage';
@@ -20,8 +21,7 @@ class Layout extends React.Component {
 					<div className = 'contentGoHere' >
 						{this.props.children}
 					</div>
-				 
-				{/* add footer here   //// comment in JSX style */}
+				<Footer />
 			</div>
 		);
 	}
