@@ -42,7 +42,7 @@
     position: absolute;
     text-indent: 25px;
     font-family: logo2;
-    font-size: 30px;
+    font-size: 2.5vw;
 }
 button{
     height: 75%;
@@ -92,6 +92,6 @@ button{
     text-indent: 50px;
 }
 p{
-    font-family: logo;
+    font-family: Verdana;
     margin: 0;
 }

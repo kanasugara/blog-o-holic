@@ -6,13 +6,13 @@ import PostPageElement from './PostPageElement';
 export default class PostPage extends React.Component{
     constructor() {
       super();
-          this.state = {  
-            post: ''   ,
-            };
-      }
+      this.state = {  
+        post: '',
+      };
+    }
     componentWillMount(){
         const url = `/posts/${this.props.params.id}`;
-        Request.get(url).then((response) => {
+        Request.get(url).then(response => {
             this.setState({
                 post: response.body
             })
@@ -28,7 +28,7 @@ export default class PostPage extends React.Component{
                     title = {post.title} 
                     mainTxt = {post.mainTxt}
                     mainBg = {post.mainBg}
-            />;
+            />
       </div>
     );
   }

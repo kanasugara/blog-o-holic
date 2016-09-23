@@ -1,9 +1,33 @@
 footer ul, h3, h4{
 	margin:0;
 	text-align: center;
+	padding: 0;
+    font-family: logo2;
 }
 footer a{
     display: inline-block;
-    word-wrap: nowrap;
-    width: 50px;
-    padding: 5px}
+    width: 70px;
+    text-decoration: none;
+    color: #5d4e4e;
+    transition: all 300ms ease-in-out;
+}
+footer a:hover{
+	color: white;	
+    transition: all 300ms ease-in-out;
+}
+footer{
+	border-top: solid black 1px;
+	background-color: rgba(189, 182, 182, 0.7);
+}
+ul{
+	font-size: 25px;
+    height: 25px;
+}
+h3{
+	font-size: 20px;
+	height: 20px;
+}
+h4{
+	font-size: 15px;
+    height: 20px;
+}

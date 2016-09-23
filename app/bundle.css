@@ -20,7 +20,39 @@ If cube is next to (after containers closing tag) the container:
 #container:hover + #cube { background-color: yellow; }
 
 If the cube is somewhere inside the container:
-#container:hover #cube { background-color: yellow; }*/header{
+#container:hover #cube { background-color: yellow; }*/footer ul, h3, h4{
+	margin:0;
+	text-align: center;
+	padding: 0;
+    font-family: logo2;
+}
+footer a{
+    display: inline-block;
+    width: 70px;
+    text-decoration: none;
+    color: #5d4e4e;
+    transition: all 300ms ease-in-out;
+}
+footer a:hover{
+	color: white;	
+    transition: all 300ms ease-in-out;
+}
+footer{
+	border-top: solid black 1px;
+	background-color: rgba(189, 182, 182, 0.7);
+}
+ul{
+	font-size: 25px;
+    height: 25px;
+}
+h3{
+	font-size: 20px;
+	height: 20px;
+}
+h4{
+	font-size: 15px;
+    height: 20px;
+}header{
     position: fixed;
     top: 0;
     width: 100%;
@@ -33,6 +65,7 @@ header ul{
     width: 80%;
     text-align: center;
     margin: 0;
+    min-width: 570px;
 }
 header ul a{
     padding-right: 40px;
@@ -124,7 +157,7 @@ header ul a:hover{
     position: absolute;
     text-indent: 25px;
     font-family: logo2;
-    font-size: 30px;
+    font-size: 2.5vw;
 }
 button{
     height: 75%;
@@ -174,7 +207,7 @@ button{
     text-indent: 50px;
 }
 p{
-    font-family: logo;
+    font-family: Verdana;
     margin: 0;
 }
 input{
@@ -253,7 +286,6 @@ input{
   height: 100vh;
   background-size: cover;
   background-attachment: fixed;
-  margin-bottom: 50px;
  /*CENTER TITLE*/
   display: flex;
   flex-direction: column;
@@ -268,5 +300,41 @@ input{
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .mainContent{
-
+    text-indent: 15px;
+    background-color: azure;
+    font-size: 1.5vw;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 50px;
+    width: 80%;
+    
 }
+.mainContent pre{
+  font-family: Verdana;
+  white-space: pre-wrap;
+  margin-bottom: 0;
+}#profile{
+	width: 60%;
+	margin: 0 auto;	
+	height: 300px;
+}
+#profile h1{
+	text-align: center;
+	font-family: cursive;
+}
+#blogerAvatar{
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	float: left;
+}
+#profileInfo{
+	padding-left: 215px;
+}
+#blogerDescription pre{
+	white-space: pre-wrap;
+  	margin-bottom: 0;
+}
+
+
+

@@ -1,0 +1,25 @@
+#profile{
+	width: 60%;
+	margin: 0 auto;	
+	height: 300px;
+}
+#profile h1{
+	text-align: center;
+	font-family: cursive;
+}
+#blogerAvatar{
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	float: left;
+}
+#profileInfo{
+	padding-left: 215px;
+}
+#blogerDescription pre{
+	white-space: pre-wrap;
+  	margin-bottom: 0;
+}
+
+
+

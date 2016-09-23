@@ -13,7 +13,7 @@ export default class PostPageElement extends React.Component{
           <h1> {this.props.title} </h1>
         </div>
         <div className = 'mainContent' >
-          <p> {this.props.mainTxt} </p>
+          <pre> {this.props.mainTxt} </pre>
         </div>
       </div>
     );

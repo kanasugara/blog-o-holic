@@ -11,6 +11,7 @@ header ul{
     width: 80%;
     text-align: center;
     margin: 0;
+    min-width: 570px;
 }
 header ul a{
     padding-right: 40px;

@@ -66,23 +66,27 @@
 
 	var _EditPostPage2 = _interopRequireDefault(_EditPostPage);
 
-	var _Header = __webpack_require__(248);
+	var _Footer = __webpack_require__(248);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
+
+	var _Header = __webpack_require__(251);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _mainContainer = __webpack_require__(251);
+	var _mainContainer = __webpack_require__(254);
 
 	var _mainContainer2 = _interopRequireDefault(_mainContainer);
 
-	var _NewPostPage = __webpack_require__(265);
+	var _NewPostPage = __webpack_require__(268);
 
 	var _NewPostPage2 = _interopRequireDefault(_NewPostPage);
 
-	var _postPage = __webpack_require__(268);
+	var _postPage = __webpack_require__(271);
 
 	var _postPage2 = _interopRequireDefault(_postPage);
 
-	var _ProfilePage = __webpack_require__(272);
+	var _ProfilePage = __webpack_require__(275);
 
 	var _ProfilePage2 = _interopRequireDefault(_ProfilePage);
 
@@ -114,7 +118,8 @@
 						'div',
 						{ className: 'contentGoHere' },
 						this.props.children
-					)
+					),
+					_react2.default.createElement(_Footer2.default, null)
 				);
 			}
 		}]);
@@ -27314,21 +27319,13 @@
 	                        null,
 	                        'Main Background:'
 	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'PostEditorMainBgWrapper' },
-	                        _react2.default.createElement('div', { id: 'PostEditorMainBgLabel' }),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'PostEditorMainBgBrowse' },
-	                            'Browse'
-	                        ),
-	                        _react2.default.createElement('input', { type: 'file',
-	                            className: 'PostEditorMainBg',
-	                            placeholder: 'Browse main Background',
-	                            onChange: this.handleMainBgChange.bind(this)
-	                        })
-	                    ),
+	                    _react2.default.createElement('input', {
+	                        type: 'text',
+	                        className: 'PostEditorMainBg',
+	                        placeholder: 'Enter Main Image URL',
+	                        value: this.state.mainBg,
+	                        onChange: this.handleMainBgChange.bind(this)
+	                    }),
 	                    _react2.default.createElement(
 	                        'p',
 	                        null,
@@ -28951,6 +28948,94 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var Footer = function (_React$Component) {
+	    _inherits(Footer, _React$Component);
+
+	    function Footer() {
+	        _classCallCheck(this, Footer);
+
+	        return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+	    }
+
+	    _createClass(Footer, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'footer',
+	                null,
+	                _react2.default.createElement(
+	                    'ul',
+	                    null,
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: 'home' },
+	                        'Home'
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: 'newPost' },
+	                        'New Post'
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: 'profile' },
+	                        'Profile'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'h3',
+	                    null,
+	                    'blog-o-holic'
+	                ),
+	                _react2.default.createElement(
+	                    'h4',
+	                    null,
+	                    '2016'
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Footer;
+	}(_react2.default.Component);
+
+	exports.default = Footer;
+
+/***/ },
+/* 249 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 250 */,
+/* 251 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(172);
+
+	__webpack_require__(252);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 	var Header = function (_React$Component) {
 	    _inherits(Header, _React$Component);
 
@@ -29000,14 +29085,14 @@
 	exports.default = Header;
 
 /***/ },
-/* 249 */
+/* 252 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 250 */,
-/* 251 */
+/* 253 */,
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29026,17 +29111,17 @@
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(252);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(255);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	var _underscore = __webpack_require__(259);
+	var _underscore = __webpack_require__(262);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
-	__webpack_require__(260);
+	__webpack_require__(263);
 
-	var _PostMin = __webpack_require__(262);
+	var _PostMin = __webpack_require__(265);
 
 	var _PostMin2 = _interopRequireDefault(_PostMin);
 
@@ -29123,13 +29208,13 @@
 	exports.default = MainContainer;
 
 /***/ },
-/* 252 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(253);
+	module.exports = __webpack_require__(256);
 
 /***/ },
-/* 253 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -29149,8 +29234,8 @@
 
 	var React = __webpack_require__(2);
 
-	var ReactTransitionGroup = __webpack_require__(254);
-	var ReactCSSTransitionGroupChild = __webpack_require__(256);
+	var ReactTransitionGroup = __webpack_require__(257);
+	var ReactCSSTransitionGroupChild = __webpack_require__(259);
 
 	function createTransitionTimeoutPropValidator(transitionType) {
 	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -29221,7 +29306,7 @@
 	module.exports = ReactCSSTransitionGroup;
 
 /***/ },
-/* 254 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -29241,7 +29326,7 @@
 
 	var React = __webpack_require__(2);
 	var ReactInstanceMap = __webpack_require__(119);
-	var ReactTransitionChildMapping = __webpack_require__(255);
+	var ReactTransitionChildMapping = __webpack_require__(258);
 
 	var emptyFunction = __webpack_require__(12);
 
@@ -29473,7 +29558,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 255 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -29582,7 +29667,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 256 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -29601,8 +29686,8 @@
 	var React = __webpack_require__(2);
 	var ReactDOM = __webpack_require__(35);
 
-	var CSSCore = __webpack_require__(257);
-	var ReactTransitionEvents = __webpack_require__(258);
+	var CSSCore = __webpack_require__(260);
+	var ReactTransitionEvents = __webpack_require__(261);
 
 	var onlyChild = __webpack_require__(33);
 
@@ -29754,7 +29839,7 @@
 	module.exports = ReactCSSTransitionGroupChild;
 
 /***/ },
-/* 257 */
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -29881,7 +29966,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 258 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -29959,7 +30044,7 @@
 	module.exports = ReactTransitionEvents;
 
 /***/ },
-/* 259 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//     Underscore.js 1.8.3
@@ -31513,14 +31598,14 @@
 
 
 /***/ },
-/* 260 */
+/* 263 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 261 */,
-/* 262 */
+/* 264 */,
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31537,7 +31622,7 @@
 
 	var _reactRouter = __webpack_require__(172);
 
-	__webpack_require__(263);
+	__webpack_require__(266);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31624,14 +31709,14 @@
 	exports.default = Post;
 
 /***/ },
-/* 263 */
+/* 266 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 264 */,
-/* 265 */
+/* 267 */,
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31652,7 +31737,7 @@
 
 	var _reactRouter = __webpack_require__(172);
 
-	__webpack_require__(266);
+	__webpack_require__(269);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31813,14 +31898,14 @@
 	}(_react2.default.Component);
 
 /***/ },
-/* 266 */
+/* 269 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 267 */,
-/* 268 */
+/* 270 */,
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31839,7 +31924,7 @@
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _PostPageElement = __webpack_require__(269);
+	var _PostPageElement = __webpack_require__(272);
 
 	var _PostPageElement2 = _interopRequireDefault(_PostPageElement);
 
@@ -31890,8 +31975,7 @@
 	          title: post.title,
 	          mainTxt: post.mainTxt,
 	          mainBg: post.mainBg
-	        }),
-	        ';'
+	        })
 	      );
 	    }
 	  }]);
@@ -31902,7 +31986,7 @@
 	exports.default = PostPage;
 
 /***/ },
-/* 269 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31917,7 +32001,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	__webpack_require__(270);
+	__webpack_require__(273);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31960,7 +32044,7 @@
 	          'div',
 	          { className: 'mainContent' },
 	          _react2.default.createElement(
-	            'p',
+	            'pre',
 	            null,
 	            ' ',
 	            this.props.mainTxt,
@@ -31977,14 +32061,14 @@
 	exports.default = PostPageElement;
 
 /***/ },
-/* 270 */
+/* 273 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 271 */,
-/* 272 */
+/* 274 */,
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31999,7 +32083,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ProfilePageTemplate = __webpack_require__(273);
+	var _ProfilePageTemplate = __webpack_require__(276);
 
 	var _ProfilePageTemplate2 = _interopRequireDefault(_ProfilePageTemplate);
 
@@ -32010,14 +32094,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var BLOGER = [{
-	  'id': 1,
-	  'blogerName': 'Max Barkskikh',
-	  'blogerDesc': 'lalaalallala\nPhone 55-555-55\nFax   44-444-44',
-	  'blogerAvatar': '../../img/post_2',
-	  'SignedUpDate': '26/02'
-	}];
 
 	var ProfilePage = function (_React$Component) {
 	  _inherits(ProfilePage, _React$Component);
@@ -32031,18 +32107,19 @@
 	  _createClass(ProfilePage, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        BLOGER.map(function (data) {
-	          return _react2.default.createElement(_ProfilePageTemplate2.default, {
-	            key: data.id,
-	            blogerName: data.blogerName,
-	            blogerDesc: data.blogerDesc,
-	            blogerAvatar: data.blogerAvatar
-	          });
-	        })
-	      );
+	      var BLOGER = {
+	        'id': 1,
+	        'blogerName': 'George Denis Patrick CARLIN',
+	        'blogerDesc': 'George Denis Patrick Carlin (May 12, 1937 – June 22, 2008) \nwas an American stand-up comedian, actor, social critic and author. \nCarlin was noted for his black comedy and his thoughts on politics, \nthe English language, psychology, religion, and various taboo subjects.\n\nPhone 55-555-55\n\nFax   44-444-44',
+	        'blogerAvatar': 'http://lamcdn.net/lookatme.ru/post_image-image/Iq8CRxOI1k4IXuLRzATP4w-article.jpg',
+	        'SignedUpDate': '26/02'
+	      };
+	      return _react2.default.createElement(_ProfilePageTemplate2.default, {
+	        key: BLOGER.id,
+	        blogerName: BLOGER.blogerName,
+	        blogerDesc: BLOGER.blogerDesc,
+	        blogerAvatar: BLOGER.blogerAvatar
+	      });
 	    }
 	  }]);
 
@@ -32052,7 +32129,7 @@
 	exports.default = ProfilePage;
 
 /***/ },
-/* 273 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32067,7 +32144,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	__webpack_require__(274);
+	__webpack_require__(277);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32089,26 +32166,29 @@
 	    _createClass(ProfilePage, [{
 	        key: 'render',
 	        value: function render() {
+	            var style = {
+	                background: 'url(' + this.props.blogerAvatar + ')'
+	            };
 	            return _react2.default.createElement(
 	                'div',
-	                null,
+	                { id: 'profile' },
 	                _react2.default.createElement(
 	                    'h1',
 	                    null,
 	                    this.props.blogerName
 	                ),
+	                _react2.default.createElement('div', { id: 'blogerAvatar', style: style }),
 	                _react2.default.createElement(
 	                    'div',
 	                    { id: 'profileInfo' },
 	                    _react2.default.createElement(
 	                        'div',
 	                        { id: 'blogerDescription' },
-	                        this.props.blogerDesc
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { id: 'blogerAvatar' },
-	                        this.props.blogerAvatar
+	                        _react2.default.createElement(
+	                            'pre',
+	                            null,
+	                            this.props.blogerDesc
+	                        )
 	                    )
 	                )
 	            );
@@ -32121,7 +32201,7 @@
 	exports.default = ProfilePage;
 
 /***/ },
-/* 274 */
+/* 277 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

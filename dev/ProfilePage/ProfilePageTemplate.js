@@ -4,16 +4,19 @@ import './ProfilePageTemplate.css'
 
 export default class ProfilePage extends React.Component{
     render() {
-        return ( 
-            <div>
+        const style = {
+             background: `url(${this.props.blogerAvatar})`
+         };
+        return (
+            <div id = 'profile'>
                 <h1>{this.props.blogerName}</h1> 
+                 <div id = 'blogerAvatar' style = {style}>
+                    </div>
                 <div id='profileInfo'>
                     <div id='blogerDescription'>
-                        {this.props.blogerDesc}
+                        <pre>{this.props.blogerDesc}</pre>
                     </div>
-                    <div id='blogerAvatar'>
-                        {this.props.blogerAvatar}
-                    </div>
+                   
                 </div>
             </div>
         );

@@ -3,7 +3,6 @@
   height: 100vh;
   background-size: cover;
   background-attachment: fixed;
-  margin-bottom: 50px;
  /*CENTER TITLE*/
   display: flex;
   flex-direction: column;
@@ -18,5 +17,17 @@
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .mainContent{
-
+    text-indent: 15px;
+    background-color: azure;
+    font-size: 1.5vw;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 50px;
+    width: 80%;
+    
+}
+.mainContent pre{
+  font-family: Verdana;
+  white-space: pre-wrap;
+  margin-bottom: 0;
 }

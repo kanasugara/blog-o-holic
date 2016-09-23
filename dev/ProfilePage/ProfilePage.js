@@ -2,34 +2,30 @@ import React from 'react';
 
 import ProfilePageTemplate from './ProfilePageTemplate';
 
-var BLOGER = [
-    {
-        'id' : 1,
-        'blogerName' : 'Max Barkskikh',
-        'blogerDesc' : 
-`lalaalallala
-Phone 55-555-55
-Fax   44-444-44`,
-        'blogerAvatar' : '../../img/post_2',
-        'SignedUpDate' : '26/02'
-      }
-    ]
-
 export default class ProfilePage extends React.Component{
   render() {
+    var BLOGER = {
+        'id' : 1,
+        'blogerName' : 'George Denis Patrick CARLIN',
+        'blogerDesc' : 
+`George Denis Patrick Carlin (May 12, 1937 – June 22, 2008) 
+was an American stand-up comedian, actor, social critic and author. 
+Carlin was noted for his black comedy and his thoughts on politics, 
+the English language, psychology, religion, and various taboo subjects.
+
+Phone 55-555-55
+
+Fax   44-444-44`,
+        'blogerAvatar' : 'http://lamcdn.net/lookatme.ru/post_image-image/Iq8CRxOI1k4IXuLRzATP4w-article.jpg',
+        'SignedUpDate' : '26/02'
+    };
     return (
-      <div>
-        {  
-          BLOGER.map( data => 
-            <ProfilePageTemplate 
-              key = {data.id}  
-              blogerName = {data.blogerName} 
-              blogerDesc = {data.blogerDesc}
-              blogerAvatar = {data.blogerAvatar}
-            />
-          )
-        }
-      </div>
+      <ProfilePageTemplate 
+        key = {BLOGER.id}  
+        blogerName = {BLOGER.blogerName} 
+        blogerDesc = {BLOGER.blogerDesc}
+        blogerAvatar = {BLOGER.blogerAvatar}
+      />
     );
   }
 }

@@ -9,5 +9,4 @@ const PostSchema = new Schema({
 	createdAt	: { type: Date }
 });
 
-
 const Post = mongoose.model('Post', PostSchema);
